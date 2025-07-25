@@ -101,7 +101,7 @@ mod rust_style {
     use std::time::Instant;
     
     pub struct RustBuffer {
-        data: Vec<u8>,
+        pub data: Vec<u8>,
         created_at: Instant,
     }
     
@@ -121,7 +121,7 @@ mod rust_style {
             let buffer1 = RustBuffer::new(100);
             println!("buffer1が所有権を持つ");
             
-            let buffer2 = buffer1; // 所有権の移動
+            let _buffer2 = buffer1; // 所有権の移動
             println!("所有権がbuffer2に移動");
             
             // println!("{:?}", buffer1.data); // コンパイルエラー！
