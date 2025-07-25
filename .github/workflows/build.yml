@@ -20,10 +20,11 @@ jobs:
         override: true
         components: rustfmt, clippy
     
-    - name: Install mdBook
+    - name: Install mdBook and Pandoc
       run: |
         cargo install mdbook
-        cargo install mdbook-epub
+        sudo apt-get update
+        sudo apt-get install -y pandoc
     
     - name: Test code examples
       run: |
@@ -37,8 +38,8 @@ jobs:
     - name: Build book
       run: mdbook build
     
-    # mdbook build already includes EPUB generation when [output.epub] is configured
-    # No separate EPUB generation step needed
+    - name: Generate EPUB with Pandoc
+      run: ./build-epub.sh
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -46,4 +47,4 @@ jobs:
         name: book-output
         path: |
           book/
-          book/epub/*.epub
+          *.epub
