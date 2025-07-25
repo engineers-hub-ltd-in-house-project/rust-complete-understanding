@@ -37,10 +37,8 @@ jobs:
     - name: Build book
       run: mdbook build
     
-    - name: Generate EPUB
-      run: |
-        mdbook build
-        mdbook-epub -s . rust-complete-understanding.epub
+    # mdbook build already includes EPUB generation when [output.epub] is configured
+    # No separate EPUB generation step needed
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -48,4 +46,4 @@ jobs:
         name: book-output
         path: |
           book/
-          *.epub
+          book/epub/*.epub

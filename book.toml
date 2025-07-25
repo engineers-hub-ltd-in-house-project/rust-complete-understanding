@@ -13,6 +13,7 @@ git-repository-url = "https://github.com/user/rust-complete-understanding"
 mathjax-support = true
 
 [output.epub]
+name = "rust-complete-understanding"
 cover-image = "assets/cover.png"
 additional-css = ["assets/epub.css", "assets/math.css"]
 
