@@ -38,7 +38,9 @@ jobs:
       run: mdbook build
     
     - name: Generate EPUB
-      run: mdbook-epub
+      run: |
+        mdbook build
+        mdbook-epub -s . rust-complete-understanding.epub
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
