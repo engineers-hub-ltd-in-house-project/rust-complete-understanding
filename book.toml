@@ -1,0 +1,21 @@
+[book]
+title = "Rust完全理解: 公式ドキュメント網羅とコンピューターサイエンス理論"
+authors = ["Author Name"]
+language = "ja"
+description = "Rust公式ドキュメントを網羅し、CS理論と結びつけた包括的学習書"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "navy"
+git-repository-url = "https://github.com/user/rust-complete-understanding"
+mathjax-support = true
+
+[output.epub]
+cover-image = "assets/cover.png"
+additional-css = ["assets/epub.css", "assets/math.css"]
+
+[preprocessor.index]
+
+[preprocessor.links]

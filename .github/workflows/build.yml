@@ -1,0 +1,49 @@
+name: Book Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+        components: rustfmt, clippy
+    
+    - name: Install mdBook
+      run: |
+        cargo install mdbook
+        cargo install mdbook-epub
+    
+    - name: Test code examples
+      run: |
+        for file in code_examples/**/*.rs; do
+          if [ -f "$file" ]; then
+            echo "Testing $file"
+            rustc --test "$file" -o /tmp/test && /tmp/test
+          fi
+        done
+    
+    - name: Build book
+      run: mdbook build
+    
+    - name: Generate EPUB
+      run: mdbook-epub
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: book-output
+        path: |
+          book/
+          *.epub

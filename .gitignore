@@ -1,0 +1,40 @@
+# mdBook build directory
+book/
+
+# Rust target directory
+target/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Dependency directories
+node_modules/
+
+# Build artifacts
+*.epub
+*.pdf
+*.mobi
+
+# OS specific files
+Thumbs.db
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Backup files
+*.bak
+*.backup

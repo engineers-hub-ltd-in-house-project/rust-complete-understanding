@@ -1,0 +1,69 @@
+theory_mappings:
+  linear_type_theory:
+    concepts:
+      - ownership
+      - move_semantics
+    mathematical_foundation: true
+    external_resources:
+      - "Types and Programming Languages - Pierce"
+      - "Linear Logic - Girard"
+    rust_implementation:
+      - "Ownership rules ensure each value has a single owner"
+      - "Values are moved, not copied by default"
+      - "Drop trait ensures deterministic resource cleanup"
+      
+  affine_type_theory:
+    concepts:
+      - borrowing
+      - references
+    mathematical_foundation: true
+    external_resources:
+      - "Substructural Type Systems - Walker"
+    rust_implementation:
+      - "References allow temporary access without ownership transfer"
+      - "Borrow checker enforces aliasing XOR mutation"
+      
+  memory_management:
+    concepts:
+      - stack_allocation
+      - heap_allocation
+      - raii
+    practical_focus: true
+    comparison_languages:
+      - cpp
+      - java
+      - python
+    rust_implementation:
+      - "Stack allocation for fixed-size types"
+      - "Box<T> for heap allocation"
+      - "Automatic deallocation when owner goes out of scope"
+      
+  type_theory:
+    concepts:
+      - type_inference
+      - generics
+      - trait_bounds
+    mathematical_foundation: true
+    external_resources:
+      - "The Little Typer - Friedman & Christiansen"
+      - "Advanced Topics in Types and Programming Languages - Pierce"
+    rust_implementation:
+      - "Hindley-Milner type inference with extensions"
+      - "Parametric polymorphism via generics"
+      - "Trait system for ad-hoc polymorphism"
+      
+  concurrency_theory:
+    concepts:
+      - race_conditions
+      - synchronization
+      - message_passing
+    practical_focus: true
+    comparison_languages:
+      - go
+      - erlang
+      - java
+    rust_implementation:
+      - "Send and Sync traits for thread safety"
+      - "Arc<Mutex<T>> for shared state"
+      - "Channels for message passing"
+      - "Fearless concurrency through ownership"
