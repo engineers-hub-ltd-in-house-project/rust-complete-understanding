@@ -37,7 +37,6 @@ echo "Generating EPUB with Pandoc..."
 pandoc temp_epub/combined.md \
     -o rust-complete-understanding.epub \
     --epub-metadata=epub-metadata.xml \
-    --epub-cover-image=assets/cover.png \
     --toc \
     --toc-depth=3 \
     -f markdown \
