@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="C" xml:lang="C">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title>ch004.xhtml</title>
+  <style>
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" href="../styles/stylesheet1.css" />
+</head>
+<body epub:type="bodymatter">
+<section id="メモリモデルとプログラミング言語" class="level1">
+<h1>メモリモデルとプログラミング言語</h1>
+<section id="はじめに-2" class="level2">
+<h2>はじめに</h2>
+<p>プログラミング言語を深く理解するためには、コンピューターのメモリモデルを理解することが不可欠です。本節では、コンピューターサイエンスの基礎理論からメモリ管理を学び、それがどのようにプログラミング言語の設計に影響を与えたかを探求します。</p>
+</section>
+<section id="メモリ階層構造" class="level2">
+<h2>メモリ階層構造</h2>
+<p>現代のコンピューターは、階層的なメモリ構造を持っています：</p>
+<pre><code>┌─────────────────┐
+│   レジスタ      │ ← 最高速・最小容量
+├─────────────────┤
+│  L1キャッシュ   │
+├─────────────────┤
+│  L2キャッシュ   │
+├─────────────────┤
+│  L3キャッシュ   │
+├─────────────────┤
+│   主記憶(RAM)   │
+├─────────────────┤
+│ 二次記憶(SSD等) │ ← 最低速・最大容量
+└─────────────────┘</code></pre>
+<section id="アクセス速度とコスト" class="level3">
+<h3>アクセス速度とコスト</h3>
+<p>各メモリ階層のアクセス時間（典型的な値）： - レジスタ: &lt; 1ナノ秒 - L1キャッシュ: 1-2ナノ秒 - L2キャッシュ: 5-10ナノ秒 - L3キャッシュ: 10-20ナノ秒 - 主記憶: 50-100ナノ秒 - SSD: 10-100マイクロ秒 - HDD: 5-10ミリ秒</p>
+<p>この階層構造は、プログラムの性能に決定的な影響を与えます。</p>
+</section>
+</section>
+<section id="プロセスのメモリ空間" class="level2">
+<h2>プロセスのメモリ空間</h2>
+<p>プログラムが実行されるとき、オペレーティングシステムは各プロセスに仮想メモリ空間を割り当てます：</p>
+<pre><code>高位アドレス
+┌─────────────────┐
+│  カーネル空間   │ ← OSが使用
+├─────────────────┤
+│    スタック     │ ← 関数呼び出し、ローカル変数
+│       ↓         │    （下向きに成長）
+├─────────────────┤
+│                 │ ← 未使用領域
+├─────────────────┤
+│       ↑         │    （上向きに成長）
+│     ヒープ      │ ← 動的メモリ割り当て
+├─────────────────┤
+│      BSS        │ ← 未初期化グローバル変数
+├─────────────────┤
+│     データ      │ ← 初期化済みグローバル変数
+├─────────────────┤
+│    テキスト     │ ← プログラムコード（読み取り専用）
+└─────────────────┘
+低位アドレス</code></pre>
+<section id="スタックとヒープの詳細" class="level3">
+<h3>スタックとヒープの詳細</h3>
+<section id="スタックstack" class="level4">
+<h4>スタック（Stack）</h4>
+<p>スタックは、LIFO（Last In, First Out）構造で管理される高速なメモリ領域です：</p>
+<p><strong>特徴</strong>： - <strong>自動管理</strong>: 関数の開始・終了時に自動的に割り当て・解放 - <strong>高速</strong>: 単純なポインタ操作のみ - <strong>サイズ制限</strong>: 通常8MB程度（OSにより異なる） - <strong>連続性</strong>: メモリは連続して割り当てられる</p>
+<p><strong>用途</strong>： - ローカル変数 - 関数の引数 - 戻り値 - 戻りアドレス</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> stack_example() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">42</span><span class="op">;</span>          <span class="co">// スタックに4バイト</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y <span class="op">=</span> [<span class="dv">0u8</span><span class="op">;</span> <span class="dv">1024</span>]<span class="op">;</span> <span class="co">// スタックに1024バイト</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 関数終了時に自動的に解放</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="ヒープheap" class="level4">
+<h4>ヒープ（Heap）</h4>
+<p>ヒープは、動的にメモリを割り当てるための領域です：</p>
+<p><strong>特徴</strong>： - <strong>手動管理</strong>: プログラマが明示的に割り当て・解放（またはGC） - <strong>低速</strong>: メモリアロケータのアルゴリズムに依存 - <strong>サイズ柔軟</strong>: 利用可能な物理メモリまで - <strong>フラグメンテーション</strong>: 断片化が発生する可能性</p>
+<p><strong>用途</strong>： - 実行時にサイズが決まるデータ - 大きなデータ構造 - 関数間で共有されるデータ</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> heap_example() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span> <span class="co">// ヒープにデータを割り当て</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="dt">Box</span><span class="pp">::</span>new(<span class="dv">42</span>)<span class="op">;</span>  <span class="co">// ヒープに4バイト割り当て</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Rustでは所有権システムにより自動解放</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+</section>
+<section id="メモリ管理戦略" class="level2">
+<h2>メモリ管理戦略</h2>
+<p>プログラミング言語は、メモリ管理に対して異なるアプローチを採用しています：</p>
+<section id="手動メモリ管理cc" class="level3">
+<h3>1. 手動メモリ管理（C/C++）</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// C言語の例</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">*</span> buffer <span class="op">=</span> <span class="op">(</span><span class="dt">char</span><span class="op">*)</span>malloc<span class="op">(</span><span class="dv">1024</span><span class="op">);</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>buffer <span class="op">!=</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// bufferを使用</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>buffer<span class="op">);</span> <span class="co">// 手動で解放</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>利点</strong>： - 完全な制御 - 予測可能なパフォーマンス - 最小のオーバーヘッド</p>
+<p><strong>欠点</strong>： - メモリリーク - ダブルフリー - use-after-free - バッファオーバーフロー</p>
+</section>
+<section id="ガベージコレクションjavagopython" class="level3">
+<h3>2. ガベージコレクション（Java/Go/Python）</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Javaの例</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> list <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>list<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="st">&quot;Hello&quot;</span><span class="op">);</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">// GCが自動的にメモリを回収</span></span></code></pre></div>
+<p><strong>利点</strong>： - 自動メモリ管理 - メモリ安全性 - 開発が簡単</p>
+<p><strong>欠点</strong>： - GCの一時停止 - メモリ使用量の増加 - 予測困難なパフォーマンス</p>
+</section>
+<section id="参照カウントpythonswift" class="level3">
+<h3>3. 参照カウント（Python/Swift）</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pythonの例</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]  <span class="co"># 参照カウント: 1</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a          <span class="co"># 参照カウント: 2</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> a          <span class="co"># 参照カウント: 1</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> b          <span class="co"># 参照カウント: 0 → 解放</span></span></code></pre></div>
+<p><strong>利点</strong>： - 決定的な解放タイミング - 実装が比較的単純</p>
+<p><strong>欠点</strong>： - 循環参照の問題 - カウント更新のオーバーヘッド</p>
+</section>
+<section id="所有権システムrust" class="level3">
+<h3>4. 所有権システム（Rust）</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Rustの例</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;hello&quot;</span>)<span class="op">;</span> <span class="co">// sが所有</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> t <span class="op">=</span> s<span class="op">;</span>                     <span class="co">// 所有権がtに移動</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// sは使用不可</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="co">// tのスコープ終了時に自動解放</span></span></code></pre></div>
+<p><strong>利点</strong>： - コンパイル時のメモリ安全性保証 - GCなしで自動メモリ管理 - ゼロコスト抽象化</p>
+<p><strong>欠点</strong>： - 学習曲線が急 - 制約的なプログラミングモデル</p>
+</section>
+</section>
+<section id="メモリ安全性の問題" class="level2">
+<h2>メモリ安全性の問題</h2>
+<section id="典型的なメモリエラー" class="level3">
+<h3>典型的なメモリエラー</h3>
+<ol type="1">
+<li><strong>バッファオーバーフロー</strong></li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> buffer<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>strcpy<span class="op">(</span>buffer<span class="op">,</span> <span class="st">&quot;This string is too long!&quot;</span><span class="op">);</span> <span class="co">// 危険！</span></span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>use-after-free</strong></li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> ptr <span class="op">=</span> malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>free<span class="op">(</span>ptr<span class="op">);</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>ptr <span class="op">=</span> <span class="dv">42</span><span class="op">;</span> <span class="co">// 未定義動作！</span></span></code></pre></div>
+<ol start="3" type="1">
+<li><strong>ダブルフリー</strong></li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>free<span class="op">(</span>ptr<span class="op">);</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>free<span class="op">(</span>ptr<span class="op">);</span> <span class="co">// エラー！</span></span></code></pre></div>
+<ol start="4" type="1">
+<li><strong>ヌルポインタ参照</strong></li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> ptr <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>ptr <span class="op">=</span> <span class="dv">42</span><span class="op">;</span> <span class="co">// セグメンテーション違反</span></span></code></pre></div>
+</section>
+<section id="メモリ安全性のコスト" class="level3">
+<h3>メモリ安全性のコスト</h3>
+<p>各言語のメモリ安全性へのアプローチには、異なるコストが伴います：</p>
+<table>
+<thead>
+<tr class="header">
+<th>言語</th>
+<th>安全性</th>
+<th>ランタイムコスト</th>
+<th>開発コスト</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C</td>
+<td>低</td>
+<td>なし</td>
+<td>高</td>
+</tr>
+<tr class="even">
+<td>Java</td>
+<td>高</td>
+<td>GCオーバーヘッド</td>
+<td>中</td>
+</tr>
+<tr class="odd">
+<td>Rust</td>
+<td>高</td>
+<td>なし</td>
+<td>中〜高</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="理論的基礎線形論理とアフィン論理" class="level2">
+<h2>理論的基礎：線形論理とアフィン論理</h2>
+<p>Rustの所有権システムは、線形論理（Linear Logic）とアフィン論理（Affine Logic）の概念に基づいています：</p>
+<section id="線形論理" class="level3">
+<h3>線形論理</h3>
+<ul>
+<li>リソースは<strong>正確に一度</strong>使用される</li>
+<li>複製も破棄も許されない</li>
+</ul>
+</section>
+<section id="アフィン論理" class="level3">
+<h3>アフィン論理</h3>
+<ul>
+<li>リソースは<strong>最大一度</strong>使用される</li>
+<li>破棄は許されるが、複製は許されない</li>
+</ul>
+<p>Rustの所有権システムは、アフィン論理に基づいており、値は一度しか使用できませんが、明示的に破棄することは可能です。</p>
+</section>
+</section>
+<section id="まとめ" class="level2">
+<h2>まとめ</h2>
+<p>メモリモデルの理解は、正確で安全なプログラムを書くための基礎です。各プログラミング言語は、パフォーマンス、安全性、使いやすさのトレードオフの中で、異なるメモリ管理戦略を選択しています。Rustは、所有権システムという革新的なアプローチにより、ランタイムオーバーヘッドなしにメモリ安全性を実現しました。</p>
+<p>次節では、Rustがなぜこのようなアプローチを選択したのか、その歴史的背景と設計思想を詳しく見ていきます。</p>
+</section>
+<section id="公式ドキュメント参照-1" class="level2">
+<h2>公式ドキュメント参照</h2>
+<ul>
+<li><strong>The Book</strong>: Chapter 4.1 - What is Ownership?</li>
+<li><strong>Reference</strong>: Section 10.1 - Memory model</li>
+<li><strong>Rustonomicon</strong>: Chapter 1 - Meet Safe and Unsafe</li>
+</ul>
+</section>
+</section>
+</body>
+</html>

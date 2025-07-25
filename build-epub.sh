@@ -7,39 +7,80 @@ mdbook build
 # Create temporary directory for EPUB generation
 mkdir -p temp_epub
 
-# Copy all markdown files to temp directory
-cp -r src/* temp_epub/
-
-# Combine all markdown files in order
-echo "Combining markdown files..."
-cat > temp_epub/combined.md << EOF
-# Rust完全理解: 公式ドキュメント網羅とコンピューターサイエンス理論
-
+# Create a YAML metadata file for better chapter handling
+cat > temp_epub/metadata.yaml << EOF
+---
+title: "Rust完全理解: 公式ドキュメント網羅とコンピューターサイエンス理論"
+author: "Author Name"
+language: ja
+date: 2025-01-25
+publisher: "Publisher Name"
+rights: "All rights reserved"
+description: "Rustの公式ドキュメントを網羅しつつ、コンピューターサイエンスの理論的背景から解説する包括的な書籍"
+toc-title: "目次"
+---
 EOF
 
-# Add introduction
+# Create ordered file list based on SUMMARY.md structure
+echo "Creating ordered chapter list..."
+FILES=""
+
+# Add README
 if [ -f "src/README.md" ]; then
-    cat src/README.md >> temp_epub/combined.md
-    echo -e "\n\n" >> temp_epub/combined.md
+    FILES="$FILES src/README.md"
 fi
 
-# Add chapters in order (following SUMMARY.md structure)
-for chapter in src/part1_foundations/*.md src/part2_type_system/*.md src/part3_advanced/*.md src/appendix/*.md; do
-    if [ -f "$chapter" ] && [ "$chapter" != "src/README.md" ]; then
-        echo "Adding $chapter..."
-        cat "$chapter" >> temp_epub/combined.md
-        echo -e "\n\n" >> temp_epub/combined.md
+# Add Part I chapters in order
+for file in src/part1_foundations/chapter_1.md \
+           src/part1_foundations/chapter_1_1.md \
+           src/part1_foundations/chapter_1_2.md \
+           src/part1_foundations/chapter_2.md \
+           src/part1_foundations/chapter_2_1.md \
+           src/part1_foundations/chapter_2_2.md \
+           src/part1_foundations/chapter_2_3.md \
+           src/part1_foundations/chapter_3.md \
+           src/part1_foundations/chapter_3_1.md \
+           src/part1_foundations/chapter_3_2.md; do
+    if [ -f "$file" ]; then
+        FILES="$FILES $file"
     fi
 done
 
-# Generate EPUB with Pandoc
+# Add Part II chapters
+for file in src/part2_type_system/chapter_4.md \
+           src/part2_type_system/chapter_5.md \
+           src/part2_type_system/chapter_6.md; do
+    if [ -f "$file" ]; then
+        FILES="$FILES $file"
+    fi
+done
+
+# Add Part III chapters
+for file in src/part3_advanced/chapter_7.md \
+           src/part3_advanced/chapter_8.md \
+           src/part3_advanced/chapter_9.md; do
+    if [ -f "$file" ]; then
+        FILES="$FILES $file"
+    fi
+done
+
+# Add Appendix
+for file in src/appendix/official_docs_mapping.md \
+           src/appendix/glossary.md \
+           src/appendix/references.md; do
+    if [ -f "$file" ]; then
+        FILES="$FILES $file"
+    fi
+done
+
+# Generate EPUB with individual chapter files
 echo "Generating EPUB with Pandoc..."
-pandoc temp_epub/combined.md \
+pandoc temp_epub/metadata.yaml $FILES \
     -o rust-complete-understanding.epub \
-    --epub-metadata=epub-metadata.xml \
     --toc \
     --toc-depth=3 \
-    -f markdown \
+    --epub-chapter-level=1 \
+    -f markdown+smart \
     -t epub3
 
 # Clean up

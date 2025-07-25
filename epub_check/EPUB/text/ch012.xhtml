@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="C" xml:lang="C">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title>ch012.xhtml</title>
+  <style>
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" href="../styles/stylesheet1.css" />
+</head>
+<body epub:type="bodymatter">
+<section id="ライフタイムの理論的基礎" class="level1">
+<h1>ライフタイムの理論的基礎</h1>
+<section id="はじめに-10" class="level2">
+<h2>はじめに</h2>
+<p>ライフタイムは、Rustの型システムにおいて最も独特で強力な概念の一つです。これは参照の有効期間を静的に追跡し、メモリ安全性を保証する仕組みです。本節では、ライフタイムの数学的基礎、特に領域推論（Region Inference）の理論を深く掘り下げ、コンパイラがどのようにライフタイムを推論し検証するかを探求します。</p>
+</section>
+<section id="ライフタイムの数学的モデル" class="level2">
+<h2>ライフタイムの数学的モデル</h2>
+<section id="領域regionの概念" class="level3">
+<h3>領域（Region）の概念</h3>
+<p>ライフタイムは数学的には「領域」として定式化されます：</p>
+<pre><code>領域 r ::= {L₁, L₂, ..., Lₙ}
+
+ここで、各Lᵢはプログラムの位置（program point）</code></pre>
+</section>
+<section id="プログラム位置の定義" class="level3">
+<h3>プログラム位置の定義</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> example() <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span>          <span class="co">// L1: xの生成</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="op">&amp;</span>x<span class="op">;</span>         <span class="co">// L2: 借用の開始</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> r)<span class="op">;</span>  <span class="co">// L3: 借用の使用</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>                       <span class="co">// L4: スコープの終了</span></span></code></pre></div>
+<p>この例では： - <code>'x = {L1, L2, L3, L4}</code> （xのライフタイム） - <code>'r = {L2, L3}</code> （rのライフタイム）</p>
+</section>
+</section>
+<section id="領域の代数" class="level2">
+<h2>領域の代数</h2>
+<section id="部分領域関係" class="level3">
+<h3>部分領域関係</h3>
+<p>領域間には部分集合関係が定義されます：</p>
+<pre><code>&#39;a ⊆ &#39;b iff ∀L ∈ &#39;a. L ∈ &#39;b
+
+読み方：&#39;aが&#39;bに含まれる（&#39;aは&#39;bより短い）</code></pre>
+</section>
+<section id="領域の演算" class="level3">
+<h3>領域の演算</h3>
+<pre><code>結合（Join）: &#39;a ∪ &#39;b = {L | L ∈ &#39;a ∨ L ∈ &#39;b}
+交差（Meet）: &#39;a ∩ &#39;b = {L | L ∈ &#39;a ∧ L ∈ &#39;b}</code></pre>
+</section>
+</section>
+<section id="ライフタイム注釈の意味論" class="level2">
+<h2>ライフタイム注釈の意味論</h2>
+<section id="型システムの拡張" class="level3">
+<h3>型システムの拡張</h3>
+<pre><code>τ ::= T              // 基本型
+    | &amp;&#39;r τ          // ライフタイム&#39;rの参照
+    | &amp;&#39;r mut τ      // ライフタイム&#39;rの可変参照</code></pre>
+</section>
+<section id="関数シグネチャの解釈" class="level3">
+<h3>関数シグネチャの解釈</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> foo<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">,</span> <span class="ot">&#39;b</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;b</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span></span></code></pre></div>
+<p>これは以下を意味します： - 入力<code>x</code>はライフタイム<code>'a</code>の間有効 - 入力<code>y</code>はライフタイム<code>'b</code>の間有効 - 出力はライフタイム<code>'a</code>の間有効（<code>'a</code>に依存）</p>
+</section>
+</section>
+<section id="ライフタイム推論アルゴリズム" class="level2">
+<h2>ライフタイム推論アルゴリズム</h2>
+<section id="制約生成" class="level3">
+<h3>制約生成</h3>
+<p>コンパイラは、コードから制約を生成します：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">,</span> <span class="ot">&#39;b</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;b</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> y<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        x  <span class="co">// 制約: &#39;ret = &#39;a</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        y  <span class="co">// 制約: &#39;b ⊆ &#39;a （yを返すため）</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>生成される制約： 1. <code>'ret = 'a</code> （戻り値の型から） 2. <code>'b ⊆ 'a</code> （else節でyを返すため）</p>
+</section>
+<section id="制約解決" class="level3">
+<h3>制約解決</h3>
+<p>制約システムの解法：</p>
+<pre><code>制約集合 C = {c₁, c₂, ..., cₙ}
+
+解法アルゴリズム:
+1. 各制約を領域の包含関係に変換
+2. 推移的閉包を計算
+3. 矛盾がないか検証</code></pre>
+</section>
+</section>
+<section id="実装例ライフタイム推論の可視化" class="level2">
+<h2>実装例：ライフタイム推論の可視化</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// ライフタイム推論を段階的に示す例</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> demonstrate_lifetime_inference() <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ステップ1: 変数の宣言</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;long string&quot;</span>)<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;xyz&quot;</span>)<span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ステップ2: 参照の作成</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ステップ3: ライフタイムの制約</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// &#39;string1 = {L1..L8}</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// &#39;string2 = {L3..L6}</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// &#39;result ⊆ min(&#39;string1, &#39;string2) = {L3..L6}</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;Longest: {}&quot;</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="co">// string2のライフタイム終了</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// resultはもう使えない（ライフタイムが終了）</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> y<span class="op">.</span>len() <span class="op">{</span> x <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> y <span class="op">}</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="高度なライフタイムパターン-1" class="level2">
+<h2>高度なライフタイムパターン</h2>
+<section id="higher-ranked-trait-bounds-hrtb" class="level3">
+<h3>Higher-Ranked Trait Bounds (HRTB)</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// for&lt;&#39;a&gt; 構文：任意のライフタイムで成立</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> higher_ranked_example<span class="op">&lt;</span>F<span class="op">&gt;</span>(f<span class="op">:</span> F) </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    F<span class="op">:</span> <span class="cf">for</span><span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">&gt;</span> <span class="bu">Fn</span>(<span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;hello&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> result <span class="op">=</span> f(<span class="op">&amp;</span>s)<span class="op">;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">// 使用例</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>higher_ranked_example(<span class="op">|</span>s<span class="op">|</span> s)<span class="op">;</span></span></code></pre></div>
+<p>数学的には：</p>
+<pre><code>∀&#39;a. F: Fn(&amp;&#39;a str) -&gt; &amp;&#39;a str</code></pre>
+</section>
+<section id="ライフタイムの部分型付け" class="level3">
+<h3>ライフタイムの部分型付け</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> subtyping_example<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">,</span> <span class="ot">&#39;b</span><span class="op">:</span> <span class="ot">&#39;a</span><span class="op">&gt;</span>(longer<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;b</span> <span class="dt">str</span><span class="op">,</span> shorter<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// &#39;b: &#39;a は &#39;b ⊇ &#39;a を意味（&#39;bは&#39;aより長い）</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// したがって、&amp;&#39;b str は &amp;&#39;a str の部分型</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> longer<span class="op">.</span>len() <span class="op">&gt;</span> shorter<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        longer  <span class="co">// OK: &#39;b を &#39;a として使用</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        shorter</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="変位varianceとライフタイム" class="level2">
+<h2>変位（Variance）とライフタイム</h2>
+<section id="共変性covariance" class="level3">
+<h3>共変性（Covariance）</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// &amp;&#39;a T は &#39;a に対して共変</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> covariance_demo<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">,</span> <span class="ot">&#39;b</span><span class="op">:</span> <span class="ot">&#39;a</span><span class="op">&gt;</span>(r<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;b</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    r  <span class="co">// OK: &#39;b ⊇ &#39;a なので &amp;&#39;b T を &amp;&#39;a T として使用可能</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="反変性contravariance" class="level3">
+<h3>反変性（Contravariance）</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 関数の引数位置では反変</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Function<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> call(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> arg<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span>)<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">// &#39;b ⊇ &#39;a のとき、Function&lt;&#39;a&gt; を Function&lt;&#39;b&gt; として使用可能</span></span></code></pre></div>
+</section>
+<section id="不変性invariance" class="level3">
+<h3>不変性（Invariance）</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">// &amp;&#39;a mut T は &#39;a に対して不変</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> invariance_demo<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">,</span> <span class="ot">&#39;b</span><span class="op">&gt;</span>(r<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="kw">mut</span> <span class="op">&amp;</span><span class="ot">&#39;b</span> <span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// &#39;a と &#39;b の間に部分型関係は成立しない</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="ライフタイム省略規則" class="level2">
+<h2>ライフタイム省略規則</h2>
+<section id="省略規則の形式化" class="level3">
+<h3>省略規則の形式化</h3>
+<p>Rustには3つのライフタイム省略規則があります：</p>
+<pre><code>規則1: 各省略された入力ライフタイムは別個のパラメータ
+fn foo(x: &amp;str) → fn foo&lt;&#39;a&gt;(x: &amp;&#39;a str)
+
+規則2: 入力が1つなら、出力も同じライフタイム
+fn foo(x: &amp;str) -&gt; &amp;str → fn foo&lt;&#39;a&gt;(x: &amp;&#39;a str) -&gt; &amp;&#39;a str
+
+規則3: &amp;self または &amp;mut self があれば、出力はselfと同じ
+impl Foo {
+    fn method(&amp;self) -&gt; &amp;str → fn method&lt;&#39;a&gt;(&amp;&#39;a self) -&gt; &amp;&#39;a str
+}</code></pre>
+</section>
+</section>
+<section id="実践的な例複雑なライフタイム" class="level2">
+<h2>実践的な例：複雑なライフタイム</h2>
+<section id="ライフタイムを持つ構造体" class="level3">
+<h3>ライフタイムを持つ構造体</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// パーサーの例</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Parser<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    input<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span><span class="op">,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    position<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span><span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">&gt;</span> Parser<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> new(input<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        Parser <span class="op">{</span> input<span class="op">,</span> position<span class="op">:</span> <span class="dv">0</span> <span class="op">}</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 部分文字列のライフタイムは元の入力と同じ</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> parse_word(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;&amp;</span><span class="ot">&#39;a</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> start <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>position<span class="op">;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="kw">self</span><span class="op">.</span>position <span class="op">&lt;</span> <span class="kw">self</span><span class="op">.</span>input<span class="op">.</span>len() </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="kw">self</span><span class="op">.</span>input<span class="op">.</span>chars()<span class="op">.</span>nth(<span class="kw">self</span><span class="op">.</span>position)<span class="op">.</span>unwrap()<span class="op">.</span>is_whitespace() </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">self</span><span class="op">.</span>position <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> start <span class="op">&lt;</span> <span class="kw">self</span><span class="op">.</span>position <span class="op">{</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Some</span>(<span class="op">&amp;</span><span class="kw">self</span><span class="op">.</span>input[start<span class="op">..</span><span class="kw">self</span><span class="op">.</span>position])</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>            <span class="cn">None</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="複数のライフタイムパラメータ-1" class="level3">
+<h3>複数のライフタイムパラメータ</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Context<span class="op">&lt;</span><span class="ot">&#39;s</span><span class="op">,</span> <span class="ot">&#39;p</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    text<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;s</span> <span class="dt">str</span><span class="op">,</span>      <span class="co">// ソーステキストの参照</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    parser<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;p</span> Parser<span class="op">&lt;</span><span class="ot">&#39;s</span><span class="op">&gt;,</span> <span class="co">// パーサーへの参照</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span><span class="op">&lt;</span><span class="ot">&#39;s</span><span class="op">,</span> <span class="ot">&#39;p</span><span class="op">&gt;</span> Context<span class="op">&lt;</span><span class="ot">&#39;s</span><span class="op">,</span> <span class="ot">&#39;p</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> get_text(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;s</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>text</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> get_parser(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;p</span> Parser<span class="op">&lt;</span><span class="ot">&#39;s</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>parser</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="ライフタイムと並行性" class="level2">
+<h2>ライフタイムと並行性</h2>
+<section id="スレッド間でのライフタイム" class="level3">
+<h3>スレッド間でのライフタイム</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>thread<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">// &#39;static ライフタイム: プログラム全体の期間</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> spawn_thread() <span class="op">{</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="st">&quot;hello&quot;</span><span class="op">;</span>  <span class="co">// &amp;&#39;static str</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">thread::</span>spawn(<span class="kw">move</span> <span class="op">||</span> <span class="op">{</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> s)<span class="op">;</span>  <span class="co">// OK: &#39;static なので安全</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ローカル変数の場合</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> local <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;world&quot;</span>)<span class="op">;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="op">&amp;</span>local<span class="op">;</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// thread::spawn(move || {</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">//     println!(&quot;{}&quot;, r);  // エラー: &#39;static でない</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// });</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="sendトレイトとライフタイム" class="level3">
+<h3>Sendトレイトとライフタイム</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">// T: Send は、Tが所有権を別スレッドに移動可能を意味</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">// &amp;&#39;a T: Send となるのは T: Sync の場合のみ</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::sync::</span>Arc<span class="op">;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> send_between_threads<span class="op">&lt;</span>T<span class="op">:</span> <span class="bu">Send</span> <span class="op">+</span> <span class="bu">Sync</span> <span class="op">+</span> <span class="ot">&#39;static</span><span class="op">&gt;</span>(data<span class="op">:</span> T) <span class="op">{</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> arc <span class="op">=</span> <span class="pp">Arc::</span>new(data)<span class="op">;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> arc_clone <span class="op">=</span> <span class="pp">Arc::</span>clone(<span class="op">&amp;</span>arc)<span class="op">;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">thread::</span>spawn(<span class="kw">move</span> <span class="op">||</span> <span class="op">{</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// arcの内容を安全に共有</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;Thread: {:?}&quot;</span><span class="op">,</span> arc_clone)<span class="op">;</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="形式的検証-1" class="level2">
+<h2>形式的検証</h2>
+<section id="ライフタイムシステムの健全性" class="level3">
+<h3>ライフタイムシステムの健全性</h3>
+<pre><code>定理（ライフタイムの健全性）:
+プログラムPがライフタイムチェッカーを通過するならば、
+∀t. ∀ref ∈ P. ref が時刻tでアクセスされるとき、
+ref が指すメモリ位置は時刻tで有効である。
+
+証明スケッチ:
+1. 各参照には領域&#39;r が割り当てられる
+2. 参照は&#39;r内でのみ使用可能
+3. 被参照値は少なくとも&#39;rの間生存
+4. したがって、ダングリング参照は発生しない □</code></pre>
+</section>
+</section>
+<section id="まとめ-8" class="level2">
+<h2>まとめ</h2>
+<p>ライフタイムシステムは、以下の理論的基盤に立脚しています：</p>
+<ol type="1">
+<li><strong>領域推論</strong>: プログラム位置の集合としてライフタイムを表現</li>
+<li><strong>制約ベース解析</strong>: 型チェックから制約を生成し解決</li>
+<li><strong>変位規則</strong>: 型パラメータの部分型関係を制御</li>
+<li><strong>健全性保証</strong>: 数学的にメモリ安全性を証明</li>
+</ol>
+<p>これらの理論により、Rustは実行時オーバーヘッドなしに、コンパイル時にメモリ安全性を保証します。</p>
+</section>
+<section id="公式ドキュメント参照-9" class="level2">
+<h2>公式ドキュメント参照</h2>
+<ul>
+<li><strong>The Book</strong>: Chapter 10.3 - Validating References with Lifetimes</li>
+<li><strong>Reference</strong>: Section 10.3.1 - Lifetime elision</li>
+<li><strong>Rustonomicon</strong>: Chapter 3.5 - Lifetime Variance</li>
+<li><strong>RFC 1214</strong>: Lifetime bounds clarification</li>
+</ul>
+</section>
+</section>
+</body>
+</html>

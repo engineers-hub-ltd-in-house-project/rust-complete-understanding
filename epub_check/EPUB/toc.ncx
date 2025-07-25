@@ -1,0 +1,2540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="urn:uuid:e46ef8b9-4d9d-445f-9d2f-736a328b6c7e" />
+    <meta name="dtb:depth" content="1" />
+    <meta name="dtb:totalPageCount" content="0" />
+    <meta name="dtb:maxPageNumber" content="0" />
+  </head>
+  <docTitle>
+    <text>UNTITLED</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint-0">
+      <navLabel>
+        <text></text>
+      </navLabel>
+      <content src="text/title_page.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-1">
+      <navLabel>
+        <text>Rust完全理解: 公式ドキュメント網羅とコンピューターサイエンス理論</text>
+      </navLabel>
+      <content src="text/ch001.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-2">
+      <navLabel>
+        <text>はじめに</text>
+      </navLabel>
+      <content src="text/ch002.xhtml" />
+      <navPoint id="navPoint-3">
+        <navLabel>
+          <text>本書の特徴</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#本書の特徴" />
+      </navPoint>
+      <navPoint id="navPoint-4">
+        <navLabel>
+          <text>対象読者</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#対象読者" />
+      </navPoint>
+      <navPoint id="navPoint-5">
+        <navLabel>
+          <text>本書の構成</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#本書の構成" />
+        <navPoint id="navPoint-6">
+          <navLabel>
+            <text>Part I - 基礎理論とRustの基本</text>
+          </navLabel>
+          <content src="text/ch002.xhtml#part-i---基礎理論とrustの基本" />
+        </navPoint>
+        <navPoint id="navPoint-7">
+          <navLabel>
+            <text>Part II - 型システムと安全性</text>
+          </navLabel>
+          <content src="text/ch002.xhtml#part-ii---型システムと安全性" />
+        </navPoint>
+        <navPoint id="navPoint-8">
+          <navLabel>
+            <text>Part III - 高度な概念と実装</text>
+          </navLabel>
+          <content src="text/ch002.xhtml#part-iii---高度な概念と実装" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-9">
+        <navLabel>
+          <text>読み方ガイド</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#読み方ガイド" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-10">
+      <navLabel>
+        <text>コンピューターサイエンスから見たRust</text>
+      </navLabel>
+      <content src="text/ch003.xhtml" />
+      <navPoint id="navPoint-11">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#はじめに-1" />
+      </navPoint>
+      <navPoint id="navPoint-12">
+        <navLabel>
+          <text>プログラミング言語の歴史的背景</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#プログラミング言語の歴史的背景" />
+      </navPoint>
+      <navPoint id="navPoint-13">
+        <navLabel>
+          <text>メモリ管理の課題</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#メモリ管理の課題" />
+        <navPoint id="navPoint-14">
+          <navLabel>
+            <text>手動メモリ管理の問題</text>
+          </navLabel>
+          <content src="text/ch003.xhtml#手動メモリ管理の問題" />
+        </navPoint>
+        <navPoint id="navPoint-15">
+          <navLabel>
+            <text>ガベージコレクションの問題</text>
+          </navLabel>
+          <content src="text/ch003.xhtml#ガベージコレクションの問題" />
+        </navPoint>
+        <navPoint id="navPoint-16">
+          <navLabel>
+            <text>Rustのアプローチ</text>
+          </navLabel>
+          <content src="text/ch003.xhtml#rustのアプローチ" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-17">
+        <navLabel>
+          <text>型システムと安全性</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#型システムと安全性" />
+      </navPoint>
+      <navPoint id="navPoint-18">
+        <navLabel>
+          <text>並行性とスレッド安全性</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#並行性とスレッド安全性" />
+      </navPoint>
+      <navPoint id="navPoint-19">
+        <navLabel>
+          <text>本章のまとめ</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#本章のまとめ" />
+      </navPoint>
+      <navPoint id="navPoint-20">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#公式ドキュメント参照" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-21">
+      <navLabel>
+        <text>メモリモデルとプログラミング言語</text>
+      </navLabel>
+      <content src="text/ch004.xhtml" />
+      <navPoint id="navPoint-22">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#はじめに-2" />
+      </navPoint>
+      <navPoint id="navPoint-23">
+        <navLabel>
+          <text>メモリ階層構造</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#メモリ階層構造" />
+        <navPoint id="navPoint-24">
+          <navLabel>
+            <text>アクセス速度とコスト</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#アクセス速度とコスト" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-25">
+        <navLabel>
+          <text>プロセスのメモリ空間</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#プロセスのメモリ空間" />
+        <navPoint id="navPoint-26">
+          <navLabel>
+            <text>スタックとヒープの詳細</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#スタックとヒープの詳細" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-27">
+        <navLabel>
+          <text>メモリ管理戦略</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#メモリ管理戦略" />
+        <navPoint id="navPoint-28">
+          <navLabel>
+            <text>1. 手動メモリ管理（C/C++）</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#手動メモリ管理cc" />
+        </navPoint>
+        <navPoint id="navPoint-29">
+          <navLabel>
+            <text>2. ガベージコレクション（Java/Go/Python）</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#ガベージコレクションjavagopython" />
+        </navPoint>
+        <navPoint id="navPoint-30">
+          <navLabel>
+            <text>3. 参照カウント（Python/Swift）</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#参照カウントpythonswift" />
+        </navPoint>
+        <navPoint id="navPoint-31">
+          <navLabel>
+            <text>4. 所有権システム（Rust）</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#所有権システムrust" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-32">
+        <navLabel>
+          <text>メモリ安全性の問題</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#メモリ安全性の問題" />
+        <navPoint id="navPoint-33">
+          <navLabel>
+            <text>典型的なメモリエラー</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#典型的なメモリエラー" />
+        </navPoint>
+        <navPoint id="navPoint-34">
+          <navLabel>
+            <text>メモリ安全性のコスト</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#メモリ安全性のコスト" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-35">
+        <navLabel>
+          <text>理論的基礎：線形論理とアフィン論理</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#理論的基礎線形論理とアフィン論理" />
+        <navPoint id="navPoint-36">
+          <navLabel>
+            <text>線形論理</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#線形論理" />
+        </navPoint>
+        <navPoint id="navPoint-37">
+          <navLabel>
+            <text>アフィン論理</text>
+          </navLabel>
+          <content src="text/ch004.xhtml#アフィン論理" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-38">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#まとめ" />
+      </navPoint>
+      <navPoint id="navPoint-39">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#公式ドキュメント参照-1" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-40">
+      <navLabel>
+        <text>Rustが解決しようとした問題</text>
+      </navLabel>
+      <content src="text/ch005.xhtml" />
+      <navPoint id="navPoint-41">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#はじめに-3" />
+      </navPoint>
+      <navPoint id="navPoint-42">
+        <navLabel>
+          <text>システムプログラミングの歴史的課題</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#システムプログラミングの歴史的課題" />
+        <navPoint id="navPoint-43">
+          <navLabel>
+            <text>1960年代〜1970年代：アセンブリ言語からCへ</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#年代1970年代アセンブリ言語からcへ" />
+        </navPoint>
+        <navPoint id="navPoint-44">
+          <navLabel>
+            <text>1980年代〜1990年代：C++の挑戦</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#年代1990年代cの挑戦" />
+        </navPoint>
+        <navPoint id="navPoint-45">
+          <navLabel>
+            <text>2000年代：管理言語の台頭</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#年代管理言語の台頭" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-46">
+        <navLabel>
+          <text>Mozillaが直面した現実的な問題</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#mozillaが直面した現実的な問題" />
+        <navPoint id="navPoint-47">
+          <navLabel>
+            <text>Firefoxの開発における課題</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#firefoxの開発における課題" />
+        </navPoint>
+        <navPoint id="navPoint-48">
+          <navLabel>
+            <text>Servo プロジェクトの野望</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#servo-プロジェクトの野望" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-49">
+        <navLabel>
+          <text>Rustが解決を目指した具体的な問題</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#rustが解決を目指した具体的な問題" />
+        <navPoint id="navPoint-50">
+          <navLabel>
+            <text>1. メモリ安全性の問題</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#メモリ安全性の問題-1" />
+        </navPoint>
+        <navPoint id="navPoint-51">
+          <navLabel>
+            <text>2. データ競合の問題</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#データ競合の問題" />
+        </navPoint>
+        <navPoint id="navPoint-52">
+          <navLabel>
+            <text>3. ヌルポインタの問題</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#ヌルポインタの問題" />
+        </navPoint>
+        <navPoint id="navPoint-53">
+          <navLabel>
+            <text>4. エラー処理の問題</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#エラー処理の問題" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-54">
+        <navLabel>
+          <text>Rustの設計哲学</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#rustの設計哲学" />
+        <navPoint id="navPoint-55">
+          <navLabel>
+            <text>ゼロコスト抽象化</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#ゼロコスト抽象化" />
+        </navPoint>
+        <navPoint id="navPoint-56">
+          <navLabel>
+            <text>型による保証</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#型による保証" />
+        </navPoint>
+        <navPoint id="navPoint-57">
+          <navLabel>
+            <text>人間工学的設計</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#人間工学的設計" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-58">
+        <navLabel>
+          <text>産業界への影響</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#産業界への影響" />
+        <navPoint id="navPoint-59">
+          <navLabel>
+            <text>採用企業の増加</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#採用企業の増加" />
+        </navPoint>
+        <navPoint id="navPoint-60">
+          <navLabel>
+            <text>新しいプロジェクトの誕生</text>
+          </navLabel>
+          <content src="text/ch005.xhtml#新しいプロジェクトの誕生" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-61">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#まとめ-1" />
+      </navPoint>
+      <navPoint id="navPoint-62">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#公式ドキュメント参照-2" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-63">
+      <navLabel>
+        <text>所有権システムの理論と実装</text>
+      </navLabel>
+      <content src="text/ch006.xhtml" />
+      <navPoint id="navPoint-64">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#はじめに-4" />
+      </navPoint>
+      <navPoint id="navPoint-65">
+        <navLabel>
+          <text>所有権システムの概要</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#所有権システムの概要" />
+      </navPoint>
+      <navPoint id="navPoint-66">
+        <navLabel>
+          <text>理論的基礎</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#理論的基礎" />
+        <navPoint id="navPoint-67">
+          <navLabel>
+            <text>線形型システムとアフィン型システム</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#線形型システムとアフィン型システム" />
+        </navPoint>
+        <navPoint id="navPoint-68">
+          <navLabel>
+            <text>所有権とリソース管理</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#所有権とリソース管理" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-69">
+        <navLabel>
+          <text>所有権の実装詳細</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#所有権の実装詳細" />
+        <navPoint id="navPoint-70">
+          <navLabel>
+            <text>メモリ上での表現</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#メモリ上での表現" />
+        </navPoint>
+        <navPoint id="navPoint-71">
+          <navLabel>
+            <text>所有権の移動（Move）</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#所有権の移動move" />
+        </navPoint>
+        <navPoint id="navPoint-72">
+          <navLabel>
+            <text>Drop トレイト</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#drop-トレイト" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-73">
+        <navLabel>
+          <text>所有権システムの利点</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#所有権システムの利点" />
+        <navPoint id="navPoint-74">
+          <navLabel>
+            <text>1. メモリ安全性の保証</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#メモリ安全性の保証" />
+        </navPoint>
+        <navPoint id="navPoint-75">
+          <navLabel>
+            <text>2. ゼロコスト抽象化</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#ゼロコスト抽象化-1" />
+        </navPoint>
+        <navPoint id="navPoint-76">
+          <navLabel>
+            <text>3. 予測可能なパフォーマンス</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#予測可能なパフォーマンス" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-77">
+        <navLabel>
+          <text>実践的な例</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#実践的な例" />
+        <navPoint id="navPoint-78">
+          <navLabel>
+            <text>リソース管理の例</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#リソース管理の例" />
+        </navPoint>
+        <navPoint id="navPoint-79">
+          <navLabel>
+            <text>所有権を活用したAPI設計</text>
+          </navLabel>
+          <content src="text/ch006.xhtml#所有権を活用したapi設計" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-80">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#まとめ-2" />
+      </navPoint>
+      <navPoint id="navPoint-81">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#公式ドキュメント参照-3" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-82">
+      <navLabel>
+        <text>線形型理論と所有権</text>
+      </navLabel>
+      <content src="text/ch007.xhtml" />
+      <navPoint id="navPoint-83">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#はじめに-5" />
+      </navPoint>
+      <navPoint id="navPoint-84">
+        <navLabel>
+          <text>線形論理の基礎</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#線形論理の基礎" />
+        <navPoint id="navPoint-85">
+          <navLabel>
+            <text>線形論理とは</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#線形論理とは" />
+        </navPoint>
+        <navPoint id="navPoint-86">
+          <navLabel>
+            <text>線形型システム</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#線形型システム" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-87">
+        <navLabel>
+          <text>アフィン型理論への拡張</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#アフィン型理論への拡張" />
+        <navPoint id="navPoint-88">
+          <navLabel>
+            <text>アフィン論理</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#アフィン論理-1" />
+        </navPoint>
+        <navPoint id="navPoint-89">
+          <navLabel>
+            <text>Rustにおけるアフィン型</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#rustにおけるアフィン型" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-90">
+        <navLabel>
+          <text>数学的定式化</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#数学的定式化" />
+        <navPoint id="navPoint-91">
+          <navLabel>
+            <text>型システムの形式化</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#型システムの形式化" />
+        </navPoint>
+        <navPoint id="navPoint-92">
+          <navLabel>
+            <text>借用の形式化</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#借用の形式化" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-93">
+        <navLabel>
+          <text>実装例：線形型の動作</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#実装例線形型の動作" />
+        <navPoint id="navPoint-94">
+          <navLabel>
+            <text>基本的な線形型の動作</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#基本的な線形型の動作" />
+        </navPoint>
+        <navPoint id="navPoint-95">
+          <navLabel>
+            <text>アフィン型の実用例</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#アフィン型の実用例" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-96">
+        <navLabel>
+          <text>理論と実装の対応</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#理論と実装の対応" />
+        <navPoint id="navPoint-97">
+          <navLabel>
+            <text>型レベルでの保証</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#型レベルでの保証" />
+        </navPoint>
+        <navPoint id="navPoint-98">
+          <navLabel>
+            <text>借用検査器の役割</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#借用検査器の役割" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-99">
+        <navLabel>
+          <text>高度な型理論的概念</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#高度な型理論的概念" />
+        <navPoint id="navPoint-100">
+          <navLabel>
+            <text>部分構造型理論</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#部分構造型理論" />
+        </navPoint>
+        <navPoint id="navPoint-101">
+          <navLabel>
+            <text>ライフタイムと型理論</text>
+          </navLabel>
+          <content src="text/ch007.xhtml#ライフタイムと型理論" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-102">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#まとめ-3" />
+      </navPoint>
+      <navPoint id="navPoint-103">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#公式ドキュメント参照-4" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-104">
+      <navLabel>
+        <text>moveセマンティクスの深い理解</text>
+      </navLabel>
+      <content src="text/ch008.xhtml" />
+      <navPoint id="navPoint-105">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#はじめに-6" />
+      </navPoint>
+      <navPoint id="navPoint-106">
+        <navLabel>
+          <text>moveセマンティクスとは</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#moveセマンティクスとは" />
+        <navPoint id="navPoint-107">
+          <navLabel>
+            <text>基本概念</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#基本概念" />
+        </navPoint>
+        <navPoint id="navPoint-108">
+          <navLabel>
+            <text>メモリレベルでの動作</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#メモリレベルでの動作" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-109">
+        <navLabel>
+          <text>他言語との比較</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#他言語との比較" />
+        <navPoint id="navPoint-110">
+          <navLabel>
+            <text>C++のmoveセマンティクス</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#cのmoveセマンティクス" />
+        </navPoint>
+        <navPoint id="navPoint-111">
+          <navLabel>
+            <text>Javaの参照セマンティクス</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#javaの参照セマンティクス" />
+        </navPoint>
+        <navPoint id="navPoint-112">
+          <navLabel>
+            <text>Pythonの参照カウント</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#pythonの参照カウント" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-113">
+        <navLabel>
+          <text>Rustにおけるmoveの詳細</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#rustにおけるmoveの詳細" />
+        <navPoint id="navPoint-114">
+          <navLabel>
+            <text>Copyトレイトとmove</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#copyトレイトとmove" />
+        </navPoint>
+        <navPoint id="navPoint-115">
+          <navLabel>
+            <text>関数呼び出しとmove</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#関数呼び出しとmove" />
+        </navPoint>
+        <navPoint id="navPoint-116">
+          <navLabel>
+            <text>戻り値とmove</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#戻り値とmove" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-117">
+        <navLabel>
+          <text>高度なmoveパターン</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#高度なmoveパターン" />
+        <navPoint id="navPoint-118">
+          <navLabel>
+            <text>部分的なmove</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#部分的なmove" />
+        </navPoint>
+        <navPoint id="navPoint-119">
+          <navLabel>
+            <text>パターンマッチングとmove</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#パターンマッチングとmove" />
+        </navPoint>
+        <navPoint id="navPoint-120">
+          <navLabel>
+            <text>クロージャとmove</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#クロージャとmove" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-121">
+        <navLabel>
+          <text>パフォーマンスへの影響</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#パフォーマンスへの影響" />
+        <navPoint id="navPoint-122">
+          <navLabel>
+            <text>ゼロコスト抽象化の実現</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#ゼロコスト抽象化の実現" />
+        </navPoint>
+        <navPoint id="navPoint-123">
+          <navLabel>
+            <text>コンパイラによる処理</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#コンパイラによる処理" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-124">
+        <navLabel>
+          <text>moveセマンティクスの理論的意義</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#moveセマンティクスの理論的意義" />
+        <navPoint id="navPoint-125">
+          <navLabel>
+            <text>リソース管理の明確化</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#リソース管理の明確化" />
+        </navPoint>
+        <navPoint id="navPoint-126">
+          <navLabel>
+            <text>型システムによる保証</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#型システムによる保証" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-127">
+        <navLabel>
+          <text>実践的な指針</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#実践的な指針" />
+        <navPoint id="navPoint-128">
+          <navLabel>
+            <text>1. 不要なcloneを避ける</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#不要なcloneを避ける" />
+        </navPoint>
+        <navPoint id="navPoint-129">
+          <navLabel>
+            <text>2. 借用とmoveの使い分け</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#借用とmoveの使い分け" />
+        </navPoint>
+        <navPoint id="navPoint-130">
+          <navLabel>
+            <text>3. 明示的なmoveの活用</text>
+          </navLabel>
+          <content src="text/ch008.xhtml#明示的なmoveの活用" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-131">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#まとめ-4" />
+      </navPoint>
+      <navPoint id="navPoint-132">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#公式ドキュメント参照-5" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-133">
+      <navLabel>
+        <text>他言語との比較</text>
+      </navLabel>
+      <content src="text/ch009.xhtml" />
+      <navPoint id="navPoint-134">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#はじめに-7" />
+      </navPoint>
+      <navPoint id="navPoint-135">
+        <navLabel>
+          <text>メモリ管理手法の分類</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#メモリ管理手法の分類" />
+      </navPoint>
+      <navPoint id="navPoint-136">
+        <navLabel>
+          <text>各言語の詳細比較</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#各言語の詳細比較" />
+        <navPoint id="navPoint-137">
+          <navLabel>
+            <text>C言語：完全手動管理</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#c言語完全手動管理" />
+        </navPoint>
+        <navPoint id="navPoint-138">
+          <navLabel>
+            <text>C++：RAIIとスマートポインタ</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#craiiとスマートポインタ" />
+        </navPoint>
+        <navPoint id="navPoint-139">
+          <navLabel>
+            <text>Java：ガベージコレクション</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#javaガベージコレクション" />
+        </navPoint>
+        <navPoint id="navPoint-140">
+          <navLabel>
+            <text>Go：並行GC</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#go並行gc" />
+        </navPoint>
+        <navPoint id="navPoint-141">
+          <navLabel>
+            <text>Python：参照カウント＋循環GC</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#python参照カウント循環gc" />
+        </navPoint>
+        <navPoint id="navPoint-142">
+          <navLabel>
+            <text>Swift：ARC（自動参照カウント）</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#swiftarc自動参照カウント" />
+        </navPoint>
+        <navPoint id="navPoint-143">
+          <navLabel>
+            <text>Rust：所有権システム</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#rust所有権システム" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-144">
+        <navLabel>
+          <text>比較表</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#比較表" />
+      </navPoint>
+      <navPoint id="navPoint-145">
+        <navLabel>
+          <text>実践的な比較例</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#実践的な比較例" />
+        <navPoint id="navPoint-146">
+          <navLabel>
+            <text>タスク：大量のデータ処理</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#タスク大量のデータ処理" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-147">
+        <navLabel>
+          <text>Rustの独自性</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#rustの独自性" />
+        <navPoint id="navPoint-148">
+          <navLabel>
+            <text>1. コンパイル時保証</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#コンパイル時保証" />
+        </navPoint>
+        <navPoint id="navPoint-149">
+          <navLabel>
+            <text>2. ゼロコスト抽象化</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#ゼロコスト抽象化-2" />
+        </navPoint>
+        <navPoint id="navPoint-150">
+          <navLabel>
+            <text>3. 並行性の安全性</text>
+          </navLabel>
+          <content src="text/ch009.xhtml#並行性の安全性" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-151">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#まとめ-5" />
+      </navPoint>
+      <navPoint id="navPoint-152">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#公式ドキュメント参照-6" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-153">
+      <navLabel>
+        <text>借用システムとライフタイム</text>
+      </navLabel>
+      <content src="text/ch010.xhtml" />
+      <navPoint id="navPoint-154">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#はじめに-8" />
+      </navPoint>
+      <navPoint id="navPoint-155">
+        <navLabel>
+          <text>借用システムの基礎</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#借用システムの基礎" />
+        <navPoint id="navPoint-156">
+          <navLabel>
+            <text>借用とは何か</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#借用とは何か" />
+        </navPoint>
+        <navPoint id="navPoint-157">
+          <navLabel>
+            <text>借用の2つのルール</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#借用の2つのルール" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-158">
+        <navLabel>
+          <text>理論的基礎：読み書きロックとの対応</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#理論的基礎読み書きロックとの対応" />
+      </navPoint>
+      <navPoint id="navPoint-159">
+        <navLabel>
+          <text>ライフタイムの概念</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#ライフタイムの概念" />
+        <navPoint id="navPoint-160">
+          <navLabel>
+            <text>ライフタイムとは</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#ライフタイムとは" />
+        </navPoint>
+        <navPoint id="navPoint-161">
+          <navLabel>
+            <text>ライフタイムの推論</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#ライフタイムの推論" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-162">
+        <navLabel>
+          <text>借用チェッカーの仕組み</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#借用チェッカーの仕組み" />
+        <navPoint id="navPoint-163">
+          <navLabel>
+            <text>Non-Lexical Lifetimes (NLL)</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#non-lexical-lifetimes-nll" />
+        </navPoint>
+        <navPoint id="navPoint-164">
+          <navLabel>
+            <text>借用の分割</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#借用の分割" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-165">
+        <navLabel>
+          <text>高度なライフタイムパターン</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#高度なライフタイムパターン" />
+        <navPoint id="navPoint-166">
+          <navLabel>
+            <text>複数のライフタイムパラメータ</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#複数のライフタイムパラメータ" />
+        </navPoint>
+        <navPoint id="navPoint-167">
+          <navLabel>
+            <text>ライフタイムの境界</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#ライフタイムの境界" />
+        </navPoint>
+        <navPoint id="navPoint-168">
+          <navLabel>
+            <text>構造体のライフタイム</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#構造体のライフタイム" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-169">
+        <navLabel>
+          <text>実践的な借用パターン</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#実践的な借用パターン" />
+        <navPoint id="navPoint-170">
+          <navLabel>
+            <text>イテレータと借用</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#イテレータと借用" />
+        </navPoint>
+        <navPoint id="navPoint-171">
+          <navLabel>
+            <text>メソッドレシーバーの借用</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#メソッドレシーバーの借用" />
+        </navPoint>
+        <navPoint id="navPoint-172">
+          <navLabel>
+            <text>Interior Mutability パターン</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#interior-mutability-パターン" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-173">
+        <navLabel>
+          <text>借用とライフタイムの数学的モデル</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#借用とライフタイムの数学的モデル" />
+        <navPoint id="navPoint-174">
+          <navLabel>
+            <text>領域推論（Region Inference）</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#領域推論region-inference" />
+        </navPoint>
+        <navPoint id="navPoint-175">
+          <navLabel>
+            <text>制約システム</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#制約システム" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-176">
+        <navLabel>
+          <text>エラーパターンと解決方法</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#エラーパターンと解決方法" />
+        <navPoint id="navPoint-177">
+          <navLabel>
+            <text>よくあるエラー1：ダングリング参照</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#よくあるエラー1ダングリング参照" />
+        </navPoint>
+        <navPoint id="navPoint-178">
+          <navLabel>
+            <text>よくあるエラー2：可変参照の競合</text>
+          </navLabel>
+          <content src="text/ch010.xhtml#よくあるエラー2可変参照の競合" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-179">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#まとめ-6" />
+      </navPoint>
+      <navPoint id="navPoint-180">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#公式ドキュメント参照-7" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-181">
+      <navLabel>
+        <text>アフィン型理論と借用</text>
+      </navLabel>
+      <content src="text/ch011.xhtml" />
+      <navPoint id="navPoint-182">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#はじめに-9" />
+      </navPoint>
+      <navPoint id="navPoint-183">
+        <navLabel>
+          <text>アフィン型理論の復習</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#アフィン型理論の復習" />
+        <navPoint id="navPoint-184">
+          <navLabel>
+            <text>基本概念</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#基本概念-1" />
+        </navPoint>
+        <navPoint id="navPoint-185">
+          <navLabel>
+            <text>型理論的表現</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#型理論的表現" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-186">
+        <navLabel>
+          <text>借用の型理論的基礎</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#借用の型理論的基礎" />
+        <navPoint id="navPoint-187">
+          <navLabel>
+            <text>借用型の導入</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#借用型の導入" />
+        </navPoint>
+        <navPoint id="navPoint-188">
+          <navLabel>
+            <text>借用の生成規則</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#借用の生成規則" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-189">
+        <navLabel>
+          <text>借用とアフィン性の調和</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#借用とアフィン性の調和" />
+        <navPoint id="navPoint-190">
+          <navLabel>
+            <text>問題：アフィン型では値の共有ができない</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#問題アフィン型では値の共有ができない" />
+        </navPoint>
+        <navPoint id="navPoint-191">
+          <navLabel>
+            <text>解決：借用による短期間アクセス権</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#解決借用による短期間アクセス権" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-192">
+        <navLabel>
+          <text>借用の数学的モデル</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#借用の数学的モデル" />
+        <navPoint id="navPoint-193">
+          <navLabel>
+            <text>能力（Capability）ベースの形式化</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#能力capabilityベースの形式化" />
+        </navPoint>
+        <navPoint id="navPoint-194">
+          <navLabel>
+            <text>分割可能性（Fractional Permissions）</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#分割可能性fractional-permissions" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-195">
+        <navLabel>
+          <text>借用チェッカーの理論</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#借用チェッカーの理論" />
+        <navPoint id="navPoint-196">
+          <navLabel>
+            <text>領域（Region）ベースの型システム</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#領域regionベースの型システム" />
+        </navPoint>
+        <navPoint id="navPoint-197">
+          <navLabel>
+            <text>領域の包含関係</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#領域の包含関係" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-198">
+        <navLabel>
+          <text>借用の実装メカニズム</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#借用の実装メカニズム" />
+        <navPoint id="navPoint-199">
+          <navLabel>
+            <text>コンパイル時の借用追跡</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#コンパイル時の借用追跡" />
+        </navPoint>
+        <navPoint id="navPoint-200">
+          <navLabel>
+            <text>実際の借用チェックの例</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#実際の借用チェックの例" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-201">
+        <navLabel>
+          <text>高度な借用パターン</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#高度な借用パターン" />
+        <navPoint id="navPoint-202">
+          <navLabel>
+            <text>リバース借用（Reborrowing）</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#リバース借用reborrowing" />
+        </navPoint>
+        <navPoint id="navPoint-203">
+          <navLabel>
+            <text>分割借用（Split Borrowing）</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#分割借用split-borrowing" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-204">
+        <navLabel>
+          <text>理論と実装の橋渡し</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#理論と実装の橋渡し" />
+        <navPoint id="navPoint-205">
+          <navLabel>
+            <text>コンパイラの改良</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#コンパイラの改良" />
+        </navPoint>
+        <navPoint id="navPoint-206">
+          <navLabel>
+            <text>Two-Phase Borrowing</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#two-phase-borrowing" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-207">
+        <navLabel>
+          <text>借用とスレッド安全性</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#借用とスレッド安全性" />
+        <navPoint id="navPoint-208">
+          <navLabel>
+            <text>Send と Sync トレイト</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#send-と-sync-トレイト" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-209">
+        <navLabel>
+          <text>形式的検証</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#形式的検証" />
+        <navPoint id="navPoint-210">
+          <navLabel>
+            <text>借用チェッカーの健全性</text>
+          </navLabel>
+          <content src="text/ch011.xhtml#借用チェッカーの健全性" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-211">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#まとめ-7" />
+      </navPoint>
+      <navPoint id="navPoint-212">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#公式ドキュメント参照-8" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-213">
+      <navLabel>
+        <text>ライフタイムの理論的基礎</text>
+      </navLabel>
+      <content src="text/ch012.xhtml" />
+      <navPoint id="navPoint-214">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#はじめに-10" />
+      </navPoint>
+      <navPoint id="navPoint-215">
+        <navLabel>
+          <text>ライフタイムの数学的モデル</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#ライフタイムの数学的モデル" />
+        <navPoint id="navPoint-216">
+          <navLabel>
+            <text>領域（Region）の概念</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#領域regionの概念" />
+        </navPoint>
+        <navPoint id="navPoint-217">
+          <navLabel>
+            <text>プログラム位置の定義</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#プログラム位置の定義" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-218">
+        <navLabel>
+          <text>領域の代数</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#領域の代数" />
+        <navPoint id="navPoint-219">
+          <navLabel>
+            <text>部分領域関係</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#部分領域関係" />
+        </navPoint>
+        <navPoint id="navPoint-220">
+          <navLabel>
+            <text>領域の演算</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#領域の演算" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-221">
+        <navLabel>
+          <text>ライフタイム注釈の意味論</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#ライフタイム注釈の意味論" />
+        <navPoint id="navPoint-222">
+          <navLabel>
+            <text>型システムの拡張</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#型システムの拡張" />
+        </navPoint>
+        <navPoint id="navPoint-223">
+          <navLabel>
+            <text>関数シグネチャの解釈</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#関数シグネチャの解釈" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-224">
+        <navLabel>
+          <text>ライフタイム推論アルゴリズム</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#ライフタイム推論アルゴリズム" />
+        <navPoint id="navPoint-225">
+          <navLabel>
+            <text>制約生成</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#制約生成" />
+        </navPoint>
+        <navPoint id="navPoint-226">
+          <navLabel>
+            <text>制約解決</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#制約解決" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-227">
+        <navLabel>
+          <text>実装例：ライフタイム推論の可視化</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#実装例ライフタイム推論の可視化" />
+      </navPoint>
+      <navPoint id="navPoint-228">
+        <navLabel>
+          <text>高度なライフタイムパターン</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#高度なライフタイムパターン-1" />
+        <navPoint id="navPoint-229">
+          <navLabel>
+            <text>Higher-Ranked Trait Bounds (HRTB)</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#higher-ranked-trait-bounds-hrtb" />
+        </navPoint>
+        <navPoint id="navPoint-230">
+          <navLabel>
+            <text>ライフタイムの部分型付け</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#ライフタイムの部分型付け" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-231">
+        <navLabel>
+          <text>変位（Variance）とライフタイム</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#変位varianceとライフタイム" />
+        <navPoint id="navPoint-232">
+          <navLabel>
+            <text>共変性（Covariance）</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#共変性covariance" />
+        </navPoint>
+        <navPoint id="navPoint-233">
+          <navLabel>
+            <text>反変性（Contravariance）</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#反変性contravariance" />
+        </navPoint>
+        <navPoint id="navPoint-234">
+          <navLabel>
+            <text>不変性（Invariance）</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#不変性invariance" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-235">
+        <navLabel>
+          <text>ライフタイム省略規則</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#ライフタイム省略規則" />
+        <navPoint id="navPoint-236">
+          <navLabel>
+            <text>省略規則の形式化</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#省略規則の形式化" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-237">
+        <navLabel>
+          <text>実践的な例：複雑なライフタイム</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#実践的な例複雑なライフタイム" />
+        <navPoint id="navPoint-238">
+          <navLabel>
+            <text>ライフタイムを持つ構造体</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#ライフタイムを持つ構造体" />
+        </navPoint>
+        <navPoint id="navPoint-239">
+          <navLabel>
+            <text>複数のライフタイムパラメータ</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#複数のライフタイムパラメータ-1" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-240">
+        <navLabel>
+          <text>ライフタイムと並行性</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#ライフタイムと並行性" />
+        <navPoint id="navPoint-241">
+          <navLabel>
+            <text>スレッド間でのライフタイム</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#スレッド間でのライフタイム" />
+        </navPoint>
+        <navPoint id="navPoint-242">
+          <navLabel>
+            <text>Sendトレイトとライフタイム</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#sendトレイトとライフタイム" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-243">
+        <navLabel>
+          <text>形式的検証</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#形式的検証-1" />
+        <navPoint id="navPoint-244">
+          <navLabel>
+            <text>ライフタイムシステムの健全性</text>
+          </navLabel>
+          <content src="text/ch012.xhtml#ライフタイムシステムの健全性" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-245">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#まとめ-8" />
+      </navPoint>
+      <navPoint id="navPoint-246">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#公式ドキュメント参照-9" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-247">
+      <navLabel>
+        <text>型理論の基礎とRustの型システム</text>
+      </navLabel>
+      <content src="text/ch013.xhtml" />
+      <navPoint id="navPoint-248">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#はじめに-11" />
+      </navPoint>
+      <navPoint id="navPoint-249">
+        <navLabel>
+          <text>型理論の歴史と基礎</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#型理論の歴史と基礎" />
+        <navPoint id="navPoint-250">
+          <navLabel>
+            <text>ラムダ計算から型付きラムダ計算へ</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#ラムダ計算から型付きラムダ計算へ" />
+        </navPoint>
+        <navPoint id="navPoint-251">
+          <navLabel>
+            <text>Curry-Howard対応</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#curry-howard対応" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-252">
+        <navLabel>
+          <text>Rustの型システムの特徴</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#rustの型システムの特徴" />
+        <navPoint id="navPoint-253">
+          <navLabel>
+            <text>静的型付けと型推論</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#静的型付けと型推論" />
+        </navPoint>
+        <navPoint id="navPoint-254">
+          <navLabel>
+            <text>代数的データ型（ADT）</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#代数的データ型adt" />
+        </navPoint>
+        <navPoint id="navPoint-255">
+          <navLabel>
+            <text>型の代数的性質</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#型の代数的性質" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-256">
+        <navLabel>
+          <text>高度な型システム機能</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#高度な型システム機能" />
+        <navPoint id="navPoint-257">
+          <navLabel>
+            <text>型レベルプログラミング</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#型レベルプログラミング" />
+        </navPoint>
+        <navPoint id="navPoint-258">
+          <navLabel>
+            <text>高階型（Higher-Kinded Types）の模倣</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#高階型higher-kinded-typesの模倣" />
+        </navPoint>
+        <navPoint id="navPoint-259">
+          <navLabel>
+            <text>幽霊型（Phantom Types）</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#幽霊型phantom-types" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-260">
+        <navLabel>
+          <text>型システムと所有権の統合</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#型システムと所有権の統合" />
+        <navPoint id="navPoint-261">
+          <navLabel>
+            <text>アフィン型としての所有権</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#アフィン型としての所有権" />
+        </navPoint>
+        <navPoint id="navPoint-262">
+          <navLabel>
+            <text>型による並行性の保証</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#型による並行性の保証" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-263">
+        <navLabel>
+          <text>型推論アルゴリズム</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#型推論アルゴリズム" />
+        <navPoint id="navPoint-264">
+          <navLabel>
+            <text>Hindley-Milner型推論</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#hindley-milner型推論" />
+        </navPoint>
+        <navPoint id="navPoint-265">
+          <navLabel>
+            <text>双方向型検査</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#双方向型検査" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-266">
+        <navLabel>
+          <text>実用的な型パターン</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#実用的な型パターン" />
+        <navPoint id="navPoint-267">
+          <navLabel>
+            <text>ニュータイプパターン</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#ニュータイプパターン" />
+        </navPoint>
+        <navPoint id="navPoint-268">
+          <navLabel>
+            <text>型状態パターン</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#型状態パターン" />
+        </navPoint>
+        <navPoint id="navPoint-269">
+          <navLabel>
+            <text>ビルダーパターンと型安全性</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#ビルダーパターンと型安全性" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-270">
+        <navLabel>
+          <text>型システムの限界と将来</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#型システムの限界と将来" />
+        <navPoint id="navPoint-271">
+          <navLabel>
+            <text>現在の限界</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#現在の限界" />
+        </navPoint>
+        <navPoint id="navPoint-272">
+          <navLabel>
+            <text>将来の拡張可能性</text>
+          </navLabel>
+          <content src="text/ch013.xhtml#将来の拡張可能性" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-273">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#まとめ-9" />
+      </navPoint>
+      <navPoint id="navPoint-274">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#公式ドキュメント参照-10" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-275">
+      <navLabel>
+        <text>ジェネリクスとトレイト</text>
+      </navLabel>
+      <content src="text/ch014.xhtml" />
+      <navPoint id="navPoint-276">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#はじめに-12" />
+      </navPoint>
+      <navPoint id="navPoint-277">
+        <navLabel>
+          <text>ジェネリクスの理論的基礎</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#ジェネリクスの理論的基礎" />
+        <navPoint id="navPoint-278">
+          <navLabel>
+            <text>パラメトリック多相性</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#パラメトリック多相性" />
+        </navPoint>
+        <navPoint id="navPoint-279">
+          <navLabel>
+            <text>パラメトリシティ定理</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#パラメトリシティ定理" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-280">
+        <navLabel>
+          <text>Rustにおけるジェネリクスの実装</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#rustにおけるジェネリクスの実装" />
+        <navPoint id="navPoint-281">
+          <navLabel>
+            <text>単相化（Monomorphization）</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#単相化monomorphization" />
+        </navPoint>
+        <navPoint id="navPoint-282">
+          <navLabel>
+            <text>ジェネリック構造体と列挙型</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#ジェネリック構造体と列挙型" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-283">
+        <navLabel>
+          <text>トレイトの理論的基礎</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#トレイトの理論的基礎" />
+        <navPoint id="navPoint-284">
+          <navLabel>
+            <text>型クラスとの関係</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#型クラスとの関係" />
+        </navPoint>
+        <navPoint id="navPoint-285">
+          <navLabel>
+            <text>トレイトの意味論</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#トレイトの意味論" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-286">
+        <navLabel>
+          <text>トレイトの高度な機能</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#トレイトの高度な機能" />
+        <navPoint id="navPoint-287">
+          <navLabel>
+            <text>関連型（Associated Types）</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#関連型associated-types" />
+        </navPoint>
+        <navPoint id="navPoint-288">
+          <navLabel>
+            <text>トレイト境界（Trait Bounds）</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#トレイト境界trait-bounds" />
+        </navPoint>
+        <navPoint id="navPoint-289">
+          <navLabel>
+            <text>高階トレイト境界（HRTB）</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#高階トレイト境界hrtb" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-290">
+        <navLabel>
+          <text>トレイトオブジェクトと動的ディスパッチ</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#トレイトオブジェクトと動的ディスパッチ" />
+        <navPoint id="navPoint-291">
+          <navLabel>
+            <text>静的ディスパッチ vs 動的ディスパッチ</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#静的ディスパッチ-vs-動的ディスパッチ" />
+        </navPoint>
+        <navPoint id="navPoint-292">
+          <navLabel>
+            <text>オブジェクト安全性</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#オブジェクト安全性" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-293">
+        <navLabel>
+          <text>高度なトレイトパターン</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#高度なトレイトパターン" />
+        <navPoint id="navPoint-294">
+          <navLabel>
+            <text>トレイトの継承</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#トレイトの継承" />
+        </navPoint>
+        <navPoint id="navPoint-295">
+          <navLabel>
+            <text>デフォルト実装とオーバーライド</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#デフォルト実装とオーバーライド" />
+        </navPoint>
+        <navPoint id="navPoint-296">
+          <navLabel>
+            <text>拡張トレイト（Extension Traits）</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#拡張トレイトextension-traits" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-297">
+        <navLabel>
+          <text>マーカートレイト</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#マーカートレイト" />
+        <navPoint id="navPoint-298">
+          <navLabel>
+            <text>コンパイラ組み込みトレイト</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#コンパイラ組み込みトレイト" />
+        </navPoint>
+        <navPoint id="navPoint-299">
+          <navLabel>
+            <text>カスタムマーカートレイト</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#カスタムマーカートレイト" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-300">
+        <navLabel>
+          <text>トレイトとジェネリクスの相互作用</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#トレイトとジェネリクスの相互作用" />
+        <navPoint id="navPoint-301">
+          <navLabel>
+            <text>impl Trait構文</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#impl-trait構文" />
+        </navPoint>
+        <navPoint id="navPoint-302">
+          <navLabel>
+            <text>トレイトエイリアス（実験的機能）</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#トレイトエイリアス実験的機能" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-303">
+        <navLabel>
+          <text>パフォーマンスへの影響</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#パフォーマンスへの影響-1" />
+        <navPoint id="navPoint-304">
+          <navLabel>
+            <text>ゼロコスト抽象化の実現</text>
+          </navLabel>
+          <content src="text/ch014.xhtml#ゼロコスト抽象化の実現-1" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-305">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#まとめ-10" />
+      </navPoint>
+      <navPoint id="navPoint-306">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#公式ドキュメント参照-11" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-307">
+      <navLabel>
+        <text>高度な型システム機能</text>
+      </navLabel>
+      <content src="text/ch015.xhtml" />
+      <navPoint id="navPoint-308">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#はじめに-13" />
+      </navPoint>
+      <navPoint id="navPoint-309">
+        <navLabel>
+          <text>関連型（Associated Types）の深い理解</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#関連型associated-typesの深い理解" />
+        <navPoint id="navPoint-310">
+          <navLabel>
+            <text>関連型の理論的背景</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#関連型の理論的背景" />
+        </navPoint>
+        <navPoint id="navPoint-311">
+          <navLabel>
+            <text>関連型 vs 型パラメータ</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#関連型-vs-型パラメータ" />
+        </navPoint>
+        <navPoint id="navPoint-312">
+          <navLabel>
+            <text>Generic Associated Types (GAT)</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#generic-associated-types-gat" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-313">
+        <navLabel>
+          <text>型エイリアスと不透明型</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#型エイリアスと不透明型" />
+        <navPoint id="navPoint-314">
+          <navLabel>
+            <text>型エイリアスの進化</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#型エイリアスの進化" />
+        </navPoint>
+        <navPoint id="navPoint-315">
+          <navLabel>
+            <text>存在型（Existential Types）</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#存在型existential-types" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-316">
+        <navLabel>
+          <text>Const Generics</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#const-generics" />
+        <navPoint id="navPoint-317">
+          <navLabel>
+            <text>基本的なconst generics</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#基本的なconst-generics" />
+        </navPoint>
+        <navPoint id="navPoint-318">
+          <navLabel>
+            <text>Const genericsの高度な使用</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#const-genericsの高度な使用" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-319">
+        <navLabel>
+          <text>高階型（Higher-Kinded Types）の模倣</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#高階型higher-kinded-typesの模倣-1" />
+        <navPoint id="navPoint-320">
+          <navLabel>
+            <text>HKTがない中での工夫</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#hktがない中での工夫" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-321">
+        <navLabel>
+          <text>型レベルプログラミング</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#型レベルプログラミング-1" />
+        <navPoint id="navPoint-322">
+          <navLabel>
+            <text>型レベル自然数</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#型レベル自然数" />
+        </navPoint>
+        <navPoint id="navPoint-323">
+          <navLabel>
+            <text>型レベル状態機械</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#型レベル状態機械" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-324">
+        <navLabel>
+          <text>変位（Variance）の詳細</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#変位varianceの詳細" />
+        <navPoint id="navPoint-325">
+          <navLabel>
+            <text>共変性、反変性、不変性</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#共変性反変性不変性" />
+        </navPoint>
+        <navPoint id="navPoint-326">
+          <navLabel>
+            <text>PhantomDataによる変位の制御</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#phantomdataによる変位の制御" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-327">
+        <navLabel>
+          <text>実験的機能と将来の型システム</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#実験的機能と将来の型システム" />
+        <navPoint id="navPoint-328">
+          <navLabel>
+            <text>特殊化（Specialization）</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#特殊化specialization" />
+        </navPoint>
+        <navPoint id="navPoint-329">
+          <navLabel>
+            <text>効果システム（Effect System）の可能性</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#効果システムeffect-systemの可能性" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-330">
+        <navLabel>
+          <text>型推論の限界と回避策</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#型推論の限界と回避策" />
+        <navPoint id="navPoint-331">
+          <navLabel>
+            <text>型推論の失敗パターン</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#型推論の失敗パターン" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-332">
+        <navLabel>
+          <text>実践的な型設計パターン</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#実践的な型設計パターン" />
+        <navPoint id="navPoint-333">
+          <navLabel>
+            <text>型駆動開発</text>
+          </navLabel>
+          <content src="text/ch015.xhtml#型駆動開発" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-334">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#まとめ-11" />
+      </navPoint>
+      <navPoint id="navPoint-335">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#公式ドキュメント参照-12" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-336">
+      <navLabel>
+        <text>Unsafe Rustとシステムプログラミング</text>
+      </navLabel>
+      <content src="text/ch016.xhtml" />
+      <navPoint id="navPoint-337">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#はじめに-14" />
+      </navPoint>
+      <navPoint id="navPoint-338">
+        <navLabel>
+          <text>Unsafe Rustの理論的基礎</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#unsafe-rustの理論的基礎" />
+        <navPoint id="navPoint-339">
+          <navLabel>
+            <text>安全性の境界</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#安全性の境界" />
+        </navPoint>
+        <navPoint id="navPoint-340">
+          <navLabel>
+            <text>Unsafeの5つの超能力</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#unsafeの5つの超能力" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-341">
+        <navLabel>
+          <text>生ポインタ（Raw Pointers）</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#生ポインタraw-pointers" />
+        <navPoint id="navPoint-342">
+          <navLabel>
+            <text>生ポインタの基礎</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#生ポインタの基礎" />
+        </navPoint>
+        <navPoint id="navPoint-343">
+          <navLabel>
+            <text>ポインタ演算</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#ポインタ演算" />
+        </navPoint>
+        <navPoint id="navPoint-344">
+          <navLabel>
+            <text>Nullポインタ処理</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#nullポインタ処理" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-345">
+        <navLabel>
+          <text>FFI（Foreign Function Interface）</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#ffiforeign-function-interface" />
+        <navPoint id="navPoint-346">
+          <navLabel>
+            <text>C言語との相互運用</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#c言語との相互運用" />
+        </navPoint>
+        <navPoint id="navPoint-347">
+          <navLabel>
+            <text>構造体のレイアウト</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#構造体のレイアウト" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-348">
+        <navLabel>
+          <text>メモリ管理の低レベル操作</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#メモリ管理の低レベル操作" />
+        <navPoint id="navPoint-349">
+          <navLabel>
+            <text>アロケータAPI</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#アロケータapi" />
+        </navPoint>
+        <navPoint id="navPoint-350">
+          <navLabel>
+            <text>メモリマップドI/O</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#メモリマップドio" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-351">
+        <navLabel>
+          <text>Unsafeトレイト</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#unsafeトレイト" />
+        <navPoint id="navPoint-352">
+          <navLabel>
+            <text>SendとSync</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#sendとsync" />
+        </navPoint>
+        <navPoint id="navPoint-353">
+          <navLabel>
+            <text>カスタムスマートポインタ</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#カスタムスマートポインタ" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-354">
+        <navLabel>
+          <text>インラインアセンブリ</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#インラインアセンブリ" />
+        <navPoint id="navPoint-355">
+          <navLabel>
+            <text>基本的なインラインアセンブリ</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#基本的なインラインアセンブリ" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-356">
+        <navLabel>
+          <text>安全な抽象化の構築</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#安全な抽象化の構築" />
+        <navPoint id="navPoint-357">
+          <navLabel>
+            <text>Unsafe実装の安全なラッパー</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#unsafe実装の安全なラッパー" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-358">
+        <navLabel>
+          <text>Unsafeコードの検証</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#unsafeコードの検証" />
+        <navPoint id="navPoint-359">
+          <navLabel>
+            <text>不変条件の文書化</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#不変条件の文書化" />
+        </navPoint>
+        <navPoint id="navPoint-360">
+          <navLabel>
+            <text>Miriによる検証</text>
+          </navLabel>
+          <content src="text/ch016.xhtml#miriによる検証" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-361">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#まとめ-12" />
+      </navPoint>
+      <navPoint id="navPoint-362">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch016.xhtml#公式ドキュメント参照-13" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-363">
+      <navLabel>
+        <text>並行性理論とRustの並行プログラミング</text>
+      </navLabel>
+      <content src="text/ch017.xhtml" />
+      <navPoint id="navPoint-364">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#はじめに-15" />
+      </navPoint>
+      <navPoint id="navPoint-365">
+        <navLabel>
+          <text>並行性理論の基礎</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#並行性理論の基礎" />
+        <navPoint id="navPoint-366">
+          <navLabel>
+            <text>並行性と並列性の違い</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#並行性と並列性の違い" />
+        </navPoint>
+        <navPoint id="navPoint-367">
+          <navLabel>
+            <text>CSP（Communicating Sequential Processes）</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#cspcommunicating-sequential-processes" />
+        </navPoint>
+        <navPoint id="navPoint-368">
+          <navLabel>
+            <text>アクターモデル</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#アクターモデル" />
+        </navPoint>
+        <navPoint id="navPoint-369">
+          <navLabel>
+            <text>π計算（Pi-calculus）</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#π計算pi-calculus" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-370">
+        <navLabel>
+          <text>Rustの並行性モデル</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#rustの並行性モデル" />
+        <navPoint id="navPoint-371">
+          <navLabel>
+            <text>Send と Sync トレイト</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#send-と-sync-トレイト-1" />
+        </navPoint>
+        <navPoint id="navPoint-372">
+          <navLabel>
+            <text>所有権による並行性制御</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#所有権による並行性制御" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-373">
+        <navLabel>
+          <text>スレッドとメッセージパッシング</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#スレッドとメッセージパッシング" />
+        <navPoint id="navPoint-374">
+          <navLabel>
+            <text>スレッドの作成と管理</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#スレッドの作成と管理" />
+        </navPoint>
+        <navPoint id="navPoint-375">
+          <navLabel>
+            <text>チャネルの種類と使い分け</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#チャネルの種類と使い分け" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-376">
+        <navLabel>
+          <text>共有状態と同期プリミティブ</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#共有状態と同期プリミティブ" />
+        <navPoint id="navPoint-377">
+          <navLabel>
+            <text>Mutex（相互排他）</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#mutex相互排他" />
+        </navPoint>
+        <navPoint id="navPoint-378">
+          <navLabel>
+            <text>RwLock（読み書きロック）</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#rwlock読み書きロック" />
+        </navPoint>
+        <navPoint id="navPoint-379">
+          <navLabel>
+            <text>Atomic型</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#atomic型" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-380">
+        <navLabel>
+          <text>非同期プログラミング</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#非同期プログラミング" />
+        <navPoint id="navPoint-381">
+          <navLabel>
+            <text>async/await の基礎</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#asyncawait-の基礎" />
+        </navPoint>
+        <navPoint id="navPoint-382">
+          <navLabel>
+            <text>非同期ランタイム</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#非同期ランタイム" />
+        </navPoint>
+        <navPoint id="navPoint-383">
+          <navLabel>
+            <text>非同期並行性パターン</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#非同期並行性パターン" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-384">
+        <navLabel>
+          <text>高度な並行性パターン</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#高度な並行性パターン" />
+        <navPoint id="navPoint-385">
+          <navLabel>
+            <text>ロックフリーデータ構造</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#ロックフリーデータ構造" />
+        </navPoint>
+        <navPoint id="navPoint-386">
+          <navLabel>
+            <text>並行性デバッグ</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#並行性デバッグ" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-387">
+        <navLabel>
+          <text>パフォーマンス考慮事項</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#パフォーマンス考慮事項" />
+        <navPoint id="navPoint-388">
+          <navLabel>
+            <text>並行性のオーバーヘッド</text>
+          </navLabel>
+          <content src="text/ch017.xhtml#並行性のオーバーヘッド" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-389">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#まとめ-13" />
+      </navPoint>
+      <navPoint id="navPoint-390">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch017.xhtml#公式ドキュメント参照-14" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-391">
+      <navLabel>
+        <text>マクロとメタプログラミング</text>
+      </navLabel>
+      <content src="text/ch018.xhtml" />
+      <navPoint id="navPoint-392">
+        <navLabel>
+          <text>はじめに</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#はじめに-16" />
+      </navPoint>
+      <navPoint id="navPoint-393">
+        <navLabel>
+          <text>メタプログラミングの理論的基礎</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#メタプログラミングの理論的基礎" />
+        <navPoint id="navPoint-394">
+          <navLabel>
+            <text>準引用（Quasiquotation）</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#準引用quasiquotation" />
+        </navPoint>
+        <navPoint id="navPoint-395">
+          <navLabel>
+            <text>衛生的マクロ（Hygienic Macros）</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#衛生的マクロhygienic-macros" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-396">
+        <navLabel>
+          <text>宣言的マクロ（macro_rules!）</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#宣言的マクロmacro_rules" />
+        <navPoint id="navPoint-397">
+          <navLabel>
+            <text>基本的なパターンマッチング</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#基本的なパターンマッチング" />
+        </navPoint>
+        <navPoint id="navPoint-398">
+          <navLabel>
+            <text>マクロの引数の種類</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#マクロの引数の種類" />
+        </navPoint>
+        <navPoint id="navPoint-399">
+          <navLabel>
+            <text>再帰的マクロ</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#再帰的マクロ" />
+        </navPoint>
+        <navPoint id="navPoint-400">
+          <navLabel>
+            <text>内部ルールとマクロの構造化</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#内部ルールとマクロの構造化" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-401">
+        <navLabel>
+          <text>手続き的マクロ（Procedural Macros）</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#手続き的マクロprocedural-macros" />
+        <navPoint id="navPoint-402">
+          <navLabel>
+            <text>derive マクロ</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#derive-マクロ" />
+        </navPoint>
+        <navPoint id="navPoint-403">
+          <navLabel>
+            <text>属性マクロ</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#属性マクロ" />
+        </navPoint>
+        <navPoint id="navPoint-404">
+          <navLabel>
+            <text>関数風マクロ</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#関数風マクロ" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-405">
+        <navLabel>
+          <text>高度なマクロテクニック</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#高度なマクロテクニック" />
+        <navPoint id="navPoint-406">
+          <navLabel>
+            <text>トークン操作とAST変換</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#トークン操作とast変換" />
+        </navPoint>
+        <navPoint id="navPoint-407">
+          <navLabel>
+            <text>コード生成の実践例</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#コード生成の実践例" />
+        </navPoint>
+        <navPoint id="navPoint-408">
+          <navLabel>
+            <text>マクロのデバッグとテスト</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#マクロのデバッグとテスト" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-409">
+        <navLabel>
+          <text>DSL（ドメイン固有言語）の作成</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#dslドメイン固有言語の作成" />
+        <navPoint id="navPoint-410">
+          <navLabel>
+            <text>内部DSLの設計</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#内部dslの設計" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-411">
+        <navLabel>
+          <text>コンパイル時計算とconst評価</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#コンパイル時計算とconst評価" />
+        <navPoint id="navPoint-412">
+          <navLabel>
+            <text>const関数とコンパイル時評価</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#const関数とコンパイル時評価" />
+        </navPoint>
+        <navPoint id="navPoint-413">
+          <navLabel>
+            <text>Build.rsとコード生成</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#build.rsとコード生成" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-414">
+        <navLabel>
+          <text>マクロのパフォーマンスと向上</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#マクロのパフォーマンスと向上" />
+        <navPoint id="navPoint-415">
+          <navLabel>
+            <text>コンパイル時の向上</text>
+          </navLabel>
+          <content src="text/ch018.xhtml#コンパイル時の向上" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint-416">
+        <navLabel>
+          <text>まとめ</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#まとめ-14" />
+      </navPoint>
+      <navPoint id="navPoint-417">
+        <navLabel>
+          <text>公式ドキュメント参照</text>
+        </navLabel>
+        <content src="text/ch018.xhtml#公式ドキュメント参照-15" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-418">
+      <navLabel>
+        <text>用語集</text>
+      </navLabel>
+      <content src="text/ch019.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-419">
+      <navLabel>
+        <text>公式ドキュメント対応表</text>
+      </navLabel>
+      <content src="text/ch020.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-420">
+      <navLabel>
+        <text>参考文献</text>
+      </navLabel>
+      <content src="text/ch021.xhtml" />
+    </navPoint>
+  </navMap>
+</ncx>

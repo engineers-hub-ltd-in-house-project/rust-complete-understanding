@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="C" xml:lang="C">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title>ch005.xhtml</title>
+  <style>
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" href="../styles/stylesheet1.css" />
+</head>
+<body epub:type="bodymatter">
+<section id="rustが解決しようとした問題" class="level1">
+<h1>Rustが解決しようとした問題</h1>
+<section id="はじめに-3" class="level2">
+<h2>はじめに</h2>
+<p>プログラミング言語の歴史は、常に「安全性」と「性能」のトレードオフとの戦いでした。Rustは2006年、Mozilla研究員のGraydon Hoareによって、このトレードオフを打破する野心的な目標を持って誕生しました。本節では、Rustが解決しようとした具体的な問題と、その背景にある歴史的経緯を探ります。</p>
+</section>
+<section id="システムプログラミングの歴史的課題" class="level2">
+<h2>システムプログラミングの歴史的課題</h2>
+<section id="年代1970年代アセンブリ言語からcへ" class="level3">
+<h3>1960年代〜1970年代：アセンブリ言語からCへ</h3>
+<p>システムプログラミングは、当初アセンブリ言語で行われていました：</p>
+<pre class="assembly"><code>; x86アセンブリの例
+mov eax, 1
+mov ebx, 42
+int 0x80</code></pre>
+<p><strong>問題点</strong>： - ハードウェア依存性が高い - 可読性が低い - 保守が困難 - バグが混入しやすい</p>
+<p>C言語（1972年）の登場により、ポータビリティと抽象化が実現されましたが、新たな問題も生まれました。</p>
+</section>
+<section id="年代1990年代cの挑戦" class="level3">
+<h3>1980年代〜1990年代：C++の挑戦</h3>
+<p>C++（1985年）は、オブジェクト指向とゼロコスト抽象化を目指しました：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// RAIIパターン</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FileHandle <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">FILE</span><span class="op">*</span> file<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    FileHandle<span class="op">(</span><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> name<span class="op">)</span> <span class="op">:</span> file<span class="op">(</span>fopen<span class="op">(</span>name<span class="op">,</span> <span class="st">&quot;r&quot;</span><span class="op">))</span> <span class="op">{}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>FileHandle<span class="op">()</span> <span class="op">{</span> <span class="cf">if</span> <span class="op">(</span>file<span class="op">)</span> fclose<span class="op">(</span>file<span class="op">);</span> <span class="op">}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p><strong>進歩</strong>： - RAII（Resource Acquisition Is Initialization） - テンプレートによる汎用プログラミング - 例外処理</p>
+<p><strong>残された問題</strong>： - 複雑な言語仕様 - 未定義動作の多さ - メモリ安全性の保証なし</p>
+</section>
+<section id="年代管理言語の台頭" class="level3">
+<h3>2000年代：管理言語の台頭</h3>
+<p>Java（1995年）、C#（2000年）などの管理言語が登場：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Javaのガベージコレクション</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Example <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> list <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// メモリ管理は自動</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>利点</strong>： - 自動メモリ管理 - メモリ安全性 - 開発生産性の向上</p>
+<p><strong>新たな問題</strong>： - GCによる予測不可能な一時停止 - ランタイムオーバーヘッド - システムプログラミングには不適</p>
+</section>
+</section>
+<section id="mozillaが直面した現実的な問題" class="level2">
+<h2>Mozillaが直面した現実的な問題</h2>
+<section id="firefoxの開発における課題" class="level3">
+<h3>Firefoxの開発における課題</h3>
+<p>Mozillaは、数千万行のC++コードベースを持つFirefoxの開発で、深刻な問題に直面していました：</p>
+<ol type="1">
+<li><strong>セキュリティ脆弱性の70%以上がメモリ安全性に起因</strong>
+<ul>
+<li>バッファオーバーフロー</li>
+<li>use-after-free</li>
+<li>データ競合</li>
+</ul></li>
+<li><strong>並行処理の困難さ</strong>
+<ul>
+<li>マルチコアCPUの活用が困難</li>
+<li>スレッド間のデータ共有が危険</li>
+</ul></li>
+<li><strong>大規模リファクタリングの恐怖</strong>
+<ul>
+<li>型システムが弱く、変更の影響範囲が不明</li>
+<li>実行時まで多くのバグが発見されない</li>
+</ul></li>
+</ol>
+</section>
+<section id="servo-プロジェクトの野望" class="level3">
+<h3>Servo プロジェクトの野望</h3>
+<p>MozillaはServoという新しいWebレンダリングエンジンの開発を開始し、以下の目標を掲げました：</p>
+<ul>
+<li><strong>並列処理を前提とした設計</strong></li>
+<li><strong>メモリ安全性の保証</strong></li>
+<li><strong>C++並みのパフォーマンス</strong></li>
+</ul>
+<p>これらの要求を満たす既存の言語は存在しませんでした。</p>
+</section>
+</section>
+<section id="rustが解決を目指した具体的な問題" class="level2">
+<h2>Rustが解決を目指した具体的な問題</h2>
+<section id="メモリ安全性の問題-1" class="level3">
+<h3>1. メモリ安全性の問題</h3>
+<p><strong>従来の問題</strong>：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Cでの典型的なバグ</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">*</span> get_string<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> buffer<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    strcpy<span class="op">(</span>buffer<span class="op">,</span> <span class="st">&quot;Hello&quot;</span><span class="op">);</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> buffer<span class="op">;</span> <span class="co">// スタック上のデータを返す！</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> use_after_free<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> ptr <span class="op">=</span> malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>ptr<span class="op">);</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>ptr <span class="op">=</span> <span class="dv">42</span><span class="op">;</span> <span class="co">// 解放済みメモリへのアクセス！</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Rustの解決策</strong>：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// コンパイルエラーになる</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> get_string() <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> buffer <span class="op">=</span> <span class="st">&quot;Hello&quot;</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&amp;</span>buffer <span class="co">// ライフタイムエラー</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">// 所有権システムにより防止</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> no_use_after_free() <span class="op">{</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ptr <span class="op">=</span> <span class="dt">Box</span><span class="pp">::</span>new(<span class="dv">42</span>)<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    drop(ptr)<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// *ptr; // コンパイルエラー：moveされた値の使用</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="データ競合の問題" class="level3">
+<h3>2. データ競合の問題</h3>
+<p><strong>従来の問題</strong>：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// C++での危険な並行処理</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> data<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>thread t1<span class="op">([&amp;]()</span> <span class="op">{</span> data<span class="op">.</span>push_back<span class="op">(</span><span class="dv">1</span><span class="op">);</span> <span class="op">});</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>thread t2<span class="op">([&amp;]()</span> <span class="op">{</span> data<span class="op">.</span>push_back<span class="op">(</span><span class="dv">2</span><span class="op">);</span> <span class="op">});</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">// データ競合！</span></span></code></pre></div>
+<p><strong>Rustの解決策</strong>：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Rustではコンパイルエラー</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> data <span class="op">=</span> <span class="pp">vec!</span>[]<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> t1 <span class="op">=</span> <span class="pp">thread::</span>spawn(<span class="op">||</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span>push(<span class="dv">1</span>)<span class="op">;</span> <span class="co">// エラー：mutableな参照を複数作れない</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section id="ヌルポインタの問題" class="level3">
+<h3>3. ヌルポインタの問題</h3>
+<p><strong>従来の問題</strong>：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Javaでの悪名高いNullPointerException</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> str <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>str<span class="op">.</span><span class="fu">length</span><span class="op">();</span> <span class="co">// 実行時エラー！</span></span></code></pre></div>
+<p><strong>Rustの解決策</strong>：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Optionによる明示的なnull可能性</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="dt">str</span><span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">None</span><span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Some</span>(s) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;Length: {}&quot;</span><span class="op">,</span> s<span class="op">.</span>len())<span class="op">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">None</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;No string&quot;</span>)<span class="op">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="エラー処理の問題" class="level3">
+<h3>4. エラー処理の問題</h3>
+<p><strong>従来の問題</strong>：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Cでのエラー処理</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">FILE</span><span class="op">*</span> file <span class="op">=</span> fopen<span class="op">(</span><span class="st">&quot;data.txt&quot;</span><span class="op">,</span> <span class="st">&quot;r&quot;</span><span class="op">);</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>file <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// エラー処理を忘れやすい</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Rustの解決策</strong>：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Result型による強制的なエラー処理</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> file <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">&quot;data.txt&quot;</span>)<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> file <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(f) <span class="op">=&gt;</span> <span class="op">{</span> <span class="co">/* ファイルを使用 */</span> <span class="op">},</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="op">{</span> <span class="co">/* エラー処理 */</span> <span class="op">},</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="rustの設計哲学" class="level2">
+<h2>Rustの設計哲学</h2>
+<section id="ゼロコスト抽象化" class="level3">
+<h3>ゼロコスト抽象化</h3>
+<p>「使わない機能にはコストを払わない」というC++の哲学を継承：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// イテレータはコンパイル後、手書きループと同等の性能</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> sum<span class="op">:</span> <span class="dt">i32</span> <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>iter()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>filter(<span class="op">|&amp;&amp;</span>x<span class="op">|</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>sum()<span class="op">;</span></span></code></pre></div>
+</section>
+<section id="型による保証" class="level3">
+<h3>型による保証</h3>
+<p>実行時チェックではなく、コンパイル時の型チェックで安全性を保証：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Send/Syncトレイトによるスレッド安全性の保証</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> send_between_threads<span class="op">&lt;</span>T<span class="op">:</span> <span class="bu">Send</span><span class="op">&gt;</span>(data<span class="op">:</span> T) <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">thread::</span>spawn(<span class="kw">move</span> <span class="op">||</span> <span class="op">{</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Tが Sendを実装している場合のみコンパイル可能</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="人間工学的設計" class="level3">
+<h3>人間工学的設計</h3>
+<p>開発者の生産性も重視：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 型推論により冗長な記述を削減</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> vec <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span> <span class="co">// Vec&lt;i32&gt;と推論される</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> doubled<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> vec<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> x <span class="op">*</span> <span class="dv">2</span>)<span class="op">.</span>collect()<span class="op">;</span></span></code></pre></div>
+</section>
+</section>
+<section id="産業界への影響" class="level2">
+<h2>産業界への影響</h2>
+<p>Rustの登場は、システムプログラミング業界に大きな影響を与えました：</p>
+<section id="採用企業の増加" class="level3">
+<h3>採用企業の増加</h3>
+<ul>
+<li><strong>Microsoft</strong>: Windows の一部をRustで書き換え</li>
+<li><strong>Google</strong>: Android OSへのRust導入</li>
+<li><strong>Amazon</strong>: クリティカルなインフラストラクチャでの採用</li>
+<li><strong>Discord</strong>: 高性能なバックエンドシステムの構築</li>
+</ul>
+</section>
+<section id="新しいプロジェクトの誕生" class="level3">
+<h3>新しいプロジェクトの誕生</h3>
+<ul>
+<li><strong>Deno</strong>: Node.jsの作者によるJavaScriptランタイム</li>
+<li><strong>Firecracker</strong>: AWSのマイクロVM</li>
+<li><strong>TiKV</strong>: 分散型Key-Valueストア</li>
+</ul>
+</section>
+</section>
+<section id="まとめ-1" class="level2">
+<h2>まとめ</h2>
+<p>Rustは、50年にわたるシステムプログラミングの歴史から学び、現代のハードウェアとソフトウェア要求に応える言語として設計されました。メモリ安全性、並行性、パフォーマンスという、従来は相反すると考えられていた要素を、所有権システムという革新的なアプローチで統合しました。</p>
+<p>次章では、この所有権システムがどのような理論的基礎に基づいているか、そしてどのように実装されているかを詳しく見ていきます。</p>
+</section>
+<section id="公式ドキュメント参照-2" class="level2">
+<h2>公式ドキュメント参照</h2>
+<ul>
+<li><strong>The Book</strong>: Foreword, Introduction</li>
+<li><strong>Reference</strong>: Section 1 - Introduction</li>
+<li><strong>RFC 1</strong>: Rust Design Philosophy</li>
+</ul>
+</section>
+</section>
+</body>
+</html>

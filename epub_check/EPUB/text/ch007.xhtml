@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="C" xml:lang="C">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title>ch007.xhtml</title>
+  <style>
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" href="../styles/stylesheet1.css" />
+</head>
+<body epub:type="bodymatter">
+<section id="線形型理論と所有権" class="level1">
+<h1>線形型理論と所有権</h1>
+<section id="はじめに-5" class="level2">
+<h2>はじめに</h2>
+<p>Rustの所有権システムを深く理解するためには、その理論的基礎である線形型理論（Linear Type Theory）を理解することが重要です。本節では、数学的な観点から線形型理論を解説し、それがどのようにRustの所有権システムに実装されているかを探求します。</p>
+</section>
+<section id="線形論理の基礎" class="level2">
+<h2>線形論理の基礎</h2>
+<section id="線形論理とは" class="level3">
+<h3>線形論理とは</h3>
+<p>線形論理は、1987年にフランスの論理学者Jean-Yves Girardによって提唱されました。従来の論理では、命題は何度でも使用できる（構造規則の弱化と縮約）のに対し、線形論理では<strong>リソースとしての命題</strong>という概念を導入しました。</p>
+<section id="従来の論理の構造規則" class="level4">
+<h4>従来の論理の構造規則</h4>
+<pre><code>弱化（Weakening）:
+Γ ⊢ B
+───────
+Γ, A ⊢ B
+
+縮約（Contraction）:
+Γ, A, A ⊢ B
+───────────
+Γ, A ⊢ B</code></pre>
+<p>これらの規則により、命題Aは0回でも複数回でも使用できます。</p>
+</section>
+<section id="線形論理での制限" class="level4">
+<h4>線形論理での制限</h4>
+<p>線形論理では、これらの構造規則を制限します：</p>
+<pre><code>線形含意（Linear Implication）: A ⊸ B
+「AというリソースをちょうどB」
+
+乗法的結合（Multiplicative Conjunction）: A ⊗ B
+「AとBの両方のリソース」
+
+加法的選択（Additive Disjunction）: A ⊕ B
+「AまたはBのどちらか一方」</code></pre>
+</section>
+</section>
+<section id="線形型システム" class="level3">
+<h3>線形型システム</h3>
+<p>線形型システムでは、各値は<strong>正確に一度</strong>使用されなければなりません：</p>
+<pre><code>型付け規則:
+Γ₁ ⊢ e₁ : τ₁    Γ₂ ⊢ e₂ : τ₂
+─────────────────────────────── (⊗-intro)
+    Γ₁, Γ₂ ⊢ (e₁, e₂) : τ₁ ⊗ τ₂</code></pre>
+<p>ここで、環境Γ₁とΓ₂は分離されており、変数の重複使用を防ぎます。</p>
+</section>
+</section>
+<section id="アフィン型理論への拡張" class="level2">
+<h2>アフィン型理論への拡張</h2>
+<section id="アフィン論理-1" class="level3">
+<h3>アフィン論理</h3>
+<p>アフィン論理は線形論理の緩和版で、<strong>弱化は許すが縮約は許さない</strong>システムです：</p>
+<pre><code>アフィン論理での規則:
+弱化: OK（リソースを使わないことは許される）
+縮約: NG（リソースを複製することは許されない）</code></pre>
+<p>これは実用的なプログラミングにおいて重要です。すべての値を必ず使用しなければならないのは制約が強すぎるからです。</p>
+</section>
+<section id="rustにおけるアフィン型" class="level3">
+<h3>Rustにおけるアフィン型</h3>
+<p>Rustの所有権システムは、アフィン型システムの実装です：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> affine_example() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;hello&quot;</span>)<span class="op">;</span>  <span class="co">// xがリソースを所有</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 選択1: 使用する</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 選択2: 使用しない（弱化）</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// xは自動的にドロップされる</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 不可能: 複製（縮約）</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let y = x;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let z = x;  // エラー！</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="数学的定式化" class="level2">
+<h2>数学的定式化</h2>
+<section id="型システムの形式化" class="level3">
+<h3>型システムの形式化</h3>
+<p>Rustの所有権システムを形式的に表現すると：</p>
+<pre><code>型環境: Γ ::= ∅ | Γ, x:τ
+型:     τ ::= T | &amp;τ | &amp;mut τ | Box&lt;τ&gt;
+
+所有権の判定:
+─────────── (Var-Own)
+Γ, x:τ ⊢ x : τ
+
+Γ ⊢ e : τ
+─────────────── (Move)
+Γ ⊢ move e : τ
+
+Γ ⊢ e : τ    x ∉ dom(Γ)
+──────────────────────── (Let-Move)
+Γ ⊢ let x = e : unit</code></pre>
+</section>
+<section id="借用の形式化" class="level3">
+<h3>借用の形式化</h3>
+<p>借用は、所有権を移動せずに値への参照を作成します：</p>
+<pre><code>Γ ⊢ e : τ
+──────────── (Borrow)
+Γ ⊢ &amp;e : &amp;τ
+
+Γ ⊢ e : &amp;τ
+─────────── (Deref)
+Γ ⊢ *e : τ</code></pre>
+</section>
+</section>
+<section id="実装例線形型の動作" class="level2">
+<h2>実装例：線形型の動作</h2>
+<section id="基本的な線形型の動作" class="level3">
+<h3>基本的な線形型の動作</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 線形型的な動作を示す構造体</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> LinearResource <span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    id<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    data<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u8</span><span class="op">&gt;,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> LinearResource <span class="op">{</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> new(id<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> size<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;リソース {} を作成&quot;</span><span class="op">,</span> id)<span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        LinearResource <span class="op">{</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            id<span class="op">,</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            data<span class="op">:</span> <span class="pp">vec!</span>[<span class="dv">0</span><span class="op">;</span> size]<span class="op">,</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// リソースを消費するメソッド</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> consume(<span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u8</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;リソース {} を消費&quot;</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>id)<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>data  <span class="co">// 所有権を移動</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="bu">Drop</span> <span class="cf">for</span> LinearResource <span class="op">{</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> drop(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;リソース {} を解放&quot;</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>id)<span class="op">;</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> demonstrate_linearity() <span class="op">{</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> resource <span class="op">=</span> <span class="pp">LinearResource::</span>new(<span class="dv">1</span><span class="op">,</span> <span class="dv">100</span>)<span class="op">;</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 一度だけ使用可能</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> resource<span class="op">.</span>consume()<span class="op">;</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// resource.consume();  // エラー：すでに移動済み</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;データサイズ: {}&quot;</span><span class="op">,</span> data<span class="op">.</span>len())<span class="op">;</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="アフィン型の実用例" class="level3">
+<h3>アフィン型の実用例</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::sync::</span>mpsc<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>thread<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 送信端は一度しか使えない（アフィン型）</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> channel_example() <span class="op">{</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> (tx<span class="op">,</span> rx) <span class="op">=</span> <span class="pp">mpsc::</span>channel()<span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">thread::</span>spawn(<span class="kw">move</span> <span class="op">||</span> <span class="op">{</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        tx<span class="op">.</span>send(<span class="dv">42</span>)<span class="op">.</span>unwrap()<span class="op">;</span>  <span class="co">// txの所有権が移動</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">// tx.send(43);  // エラー：txはすでに移動済み</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> received <span class="op">=</span> rx<span class="op">.</span>recv()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;受信: {}&quot;</span><span class="op">,</span> received)<span class="op">;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="理論と実装の対応" class="level2">
+<h2>理論と実装の対応</h2>
+<section id="型レベルでの保証" class="level3">
+<h3>型レベルでの保証</h3>
+<p>Rustのマーカートレイトは、型レベルで線形性を保証します：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Copyトレイトを実装しない型は自動的にアフィン型</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> NonCopyable <span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Copyトレイトを実装する型は自由に複製可能</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Copy</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Copyable <span class="op">{</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    value<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> type_level_guarantees() <span class="op">{</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nc <span class="op">=</span> NonCopyable <span class="op">{</span> data<span class="op">:</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;unique&quot;</span>) <span class="op">};</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> c <span class="op">=</span> Copyable <span class="op">{</span> value<span class="op">:</span> <span class="dv">42</span> <span class="op">};</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nc2 <span class="op">=</span> nc<span class="op">;</span>  <span class="co">// 移動（アフィン型）</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let nc3 = nc;  // エラー</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> c2 <span class="op">=</span> c<span class="op">;</span>   <span class="co">// コピー</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> c3 <span class="op">=</span> c<span class="op">;</span>   <span class="co">// OK：何度でもコピー可能</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="借用検査器の役割" class="level3">
+<h3>借用検査器の役割</h3>
+<p>借用検査器（Borrow Checker）は、アフィン型の規則を実行時ではなくコンパイル時に検証します：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> borrow_checker_example() <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> data <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 不変借用は複数可能（読み取り専用）</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> r1 <span class="op">=</span> <span class="op">&amp;</span>data<span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> r2 <span class="op">=</span> <span class="op">&amp;</span>data<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?} {:?}&quot;</span><span class="op">,</span> r1<span class="op">,</span> r2)<span class="op">;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 可変借用は一つだけ（排他的アクセス）</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> m1 <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> data<span class="op">;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let m2 = &amp;mut data;  // エラー：既に可変借用されている</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    m1<span class="op">.</span>push(<span class="dv">4</span>)<span class="op">;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="高度な型理論的概念" class="level2">
+<h2>高度な型理論的概念</h2>
+<section id="部分構造型理論" class="level3">
+<h3>部分構造型理論</h3>
+<p>Rustの型システムは、部分構造型理論（Substructural Type Theory）の一種です：</p>
+<pre><code>部分構造型の分類:
+- 線形型（Linear）: 正確に1回使用
+- アフィン型（Affine）: 最大1回使用  ← Rust
+- 関連型（Relevant）: 最低1回使用
+- 通常型（Normal）: 任意回使用</code></pre>
+</section>
+<section id="ライフタイムと型理論" class="level3">
+<h3>ライフタイムと型理論</h3>
+<p>ライフタイムは、借用の有効期間を型レベルで追跡します：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// ライフタイムパラメータ &#39;a は型理論での時相論理に対応</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> lifetime_theory<span class="op">&lt;</span><span class="ot">&#39;a</span><span class="op">,</span> T<span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> T) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">&#39;a</span> T <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    x  <span class="co">// 入力と同じライフタイムを保持</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="まとめ-3" class="level2">
+<h2>まとめ</h2>
+<p>線形型理論とアフィン型理論は、Rustの所有権システムの数学的基礎を提供します。これらの理論により、メモリ安全性が型システムのレベルで保証され、実行時オーバーヘッドなしに安全なシステムプログラミングが可能になります。</p>
+<p>次節では、この理論的基礎の上に構築された「moveセマンティクス」の詳細な動作を見ていきます。</p>
+</section>
+<section id="公式ドキュメント参照-4" class="level2">
+<h2>公式ドキュメント参照</h2>
+<ul>
+<li><strong>Reference</strong>: Section 15.2 - Subtyping and Variance</li>
+<li><strong>Rustonomicon</strong>: Chapter 3.2 - Ownership and Lifetimes</li>
+<li><strong>RFC 1238</strong>: Nonparametric dropck</li>
+</ul>
+</section>
+</section>
+</body>
+</html>
